@@ -1,9 +1,14 @@
 <script>
-	import Badge from '$lib/Badge.svelte';
+	import BadgeUniverse from '$lib/BadgeUniverse.svelte';
+	import BadgeConfigurator from '$lib/BadgeConfigurator.svelte';
 
 	export let data;
 </script>
 
 <main>
-	<Badge />
+	<BadgeUniverse data={data} />
+	<BadgeConfigurator />
 </main>
+
+<style>
+</style>
