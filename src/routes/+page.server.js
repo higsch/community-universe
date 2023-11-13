@@ -1,7 +1,7 @@
 import { createPool } from '@vercel/postgres';
 import { sql } from '@vercel/postgres';
 
-const addBadge = async (data = []) => {
+const addBadge = async (data = '0,0,0,0,0,0,0,0,0') => {
 	const createTable = await sql`
     CREATE TABLE IF NOT EXISTS badges (
       id SERIAL PRIMARY KEY,
@@ -11,7 +11,7 @@ const addBadge = async (data = []) => {
   `;
 
 	const badge = await sql`
-		INSERT INTO badges (user_id, data) VALUES (0, ${data.join(',')});
+		INSERT INTO badges (user_id, data) VALUES (0, ${data});
 	`;
 
 	return {
@@ -21,15 +21,17 @@ const addBadge = async (data = []) => {
 };
 
 export async function load() {
-	const db = createPool();
-	const startTime = Date.now();
-
+	const pool = createPool();
 	try {
-		// const { rows: users } = await db.query('SELECT * FROM users');
-		const duration = Date.now() - startTime;
+		const { rows } = await pool.query('SELECT * FROM badges');
+		const badges = rows.map((row) => {
+			return {
+				...row,
+				data: row.data.split(',').map((d) => +d) || [],
+			};
+		});
 		return {
-			// users: users,
-			duration: duration,
+			badges,
 		};
 	} catch (error) {
 		console.log('Error: ', error);
@@ -39,10 +41,9 @@ export async function load() {
 export const actions = {
 	addBadge: async ({ cookies, request }) => {
 		const data = await request.formData();
-		console.log(data);
-		// const email = data.get('email');
-		// const password = data.get('password');
-		await addBadge([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+		const values = data.get('values');
+
+		await addBadge(`${values}`);
 
 		return { success: true };
 	},
