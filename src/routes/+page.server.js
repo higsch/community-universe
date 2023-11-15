@@ -1,5 +1,8 @@
 import { createPool } from '@vercel/postgres';
 import { sql } from '@vercel/postgres';
+import { csvParse, autoType } from 'd3';
+
+import { personalityPath } from '$utils/config';
 
 const addBadge = async (data = '0,0,0,0,0,0,0,0,0') => {
 	const createTable = await sql`
@@ -20,7 +23,7 @@ const addBadge = async (data = '0,0,0,0,0,0,0,0,0') => {
 	};
 };
 
-export async function load() {
+const loadBadges = async () => {
 	const pool = createPool();
 	try {
 		const { rows } = await pool.query('SELECT * FROM badges');
@@ -30,13 +33,36 @@ export async function load() {
 				data: row.data.split(',').map((d) => +d) || [],
 			};
 		});
-		return {
-			badges,
-		};
+		return badges;
 	} catch (error) {
 		console.log('Error: ', error);
+		return [];
 	}
-}
+};
+
+const loadPersonalities = async (fetch) => {
+	try {
+		const res = await fetch(personalityPath);
+		const text = await res.text();
+		const data = csvParse(text, autoType);
+		return data;
+	} catch (error) {
+		console.log('Error: ', error);
+		return [];
+	}
+};
+
+export const load = async ({ fetch }) => {
+	const [badges, personalities] = await Promise.all([
+		loadBadges(),
+		loadPersonalities(fetch),
+	]);
+
+	return {
+		badges,
+		personalities
+	};
+};
 
 export const actions = {
 	addBadge: async ({ cookies, request }) => {

@@ -11,7 +11,7 @@
 
 	$: dimensionScale = scaleLinear()
 		.domain([0, 1])
-		.range([width / 200, width / 10]);
+		.range([width * height / 20000, width * height / 10000]);
 
 	$: scaledData = data.map((d) => {
 		return {
@@ -70,7 +70,7 @@
 		width: 100%;
 		height: 80vh;
 		min-height: 400px;
-		max-height: 1200px;
+		max-height: 500px;
 	}
 
 	.badge-container {
