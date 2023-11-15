@@ -11,7 +11,7 @@
 
 	$: dimensionScale = scaleLinear()
 		.domain([0, 1])
-		.range([width / 20, width / 10]);
+		.range([width / 200, width / 10]);
 
 	$: scaledData = data.map((d) => {
 		return {
@@ -58,6 +58,7 @@
 				<Badge
 					data={data}
 					width={r * 2}
+					spin
 				/>
 			</div>
 		{/each}
@@ -67,9 +68,9 @@
 <style>
 	.badge-universe {
 		width: 100%;
-		height: 80%;
+		height: 80vh;
 		min-height: 400px;
-		max-height: 1000px;
+		max-height: 1200px;
 	}
 
 	.badge-container {

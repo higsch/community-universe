@@ -7,6 +7,7 @@
 	// visualization: design, building, storytelling
 	// society: leadership, management, community ??
 	export let width = 250;
+	export let spin = false;
 
 	const radarVertices = (valueArray, scale, rotateRadians = -Math.PI / 2) => {
 		const nPoints = valueArray.length;
@@ -20,7 +21,7 @@
 	const turfPoly = (vertices) => polygon([[...vertices, vertices[0]]]);
 
 	$: height = width;
-	$: badgeScale = width / 10;
+	$: badgeScale = width / 11;
 
 	$: badgePaths = new Map([
 		[
@@ -105,7 +106,10 @@
 	width={width}
 	height={height}
 >
-	<g transform="translate({width / 2} {height / 2})">
+	<g
+		transform="translate({width / 2} {height / 2})"
+		class:spin={spin}
+	>
 		{#each [...badgePaths.values(), ...badgeIntersections.values()] as { fill, vertices }}
 			<path
 				d={line()(vertices)}
@@ -114,3 +118,19 @@
 		{/each}
 	</g>
 </svg>
+
+<style>
+	.spin {
+		transform-origin: center center;
+		animation: spin 180s linear infinite;
+	}
+
+	@keyframes spin {
+		0% {
+			rotate: 0deg;
+		}
+		100% {
+			rotate: 360deg;
+		}
+	}
+</style>
