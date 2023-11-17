@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import {
 		stack,
 		union,
@@ -29,6 +31,20 @@
 				(d) => d.role
 			)
 		);
+	};
+
+	const reduceLayers = (data, scale = 0.9) => {
+		return data.map((layer) => {
+			const outerReducedData = layer.map(positions => {
+				const interpolator = interpolateNumber(positions[0], positions[1]);
+				let reducedData = [interpolator(1 - scale), interpolator(scale)];
+				reducedData.data = positions.data;
+				return reducedData;
+			})
+			outerReducedData.key = layer.key;
+			outerReducedData.index = layer.index;
+			return outerReducedData;
+		});
 	};
 
 	const createSubStack = (data, scale = 5) => {
@@ -62,8 +78,8 @@
 	};
 
 	$: stackedData = createStack(data);
-
-	$: substackedData = createSubStack(stackedData, 10);
+	$: reducedData = reduceLayers(stackedData);
+	$: substackedData = createSubStack(reducedData);
 
 	$: if (stackedData && stackedData.length && width && height) {
 		yearScale = scaleLinear()
@@ -89,8 +105,6 @@
 			};
 		});
 	}
-
-	$: console.log(stackedData);
 </script>
 
 <div
