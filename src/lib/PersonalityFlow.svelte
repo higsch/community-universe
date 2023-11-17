@@ -5,11 +5,12 @@
 
 	let width, height;
 	let renderedData = [];
+	let yearScale, thicknessScale;
 
 	const createStack = (data) => {
 		return stack()
 			.keys(union(data.map((d) => d.role)))
-			.value(([, D], key) => D.get(key).value)
+			.value(([, d], key) => d.get(key).value)
 			.offset(stackOffsetSilhouette)(
 			index(
 				data,
@@ -19,22 +20,18 @@
 		);
 	};
 
-	$: alenka = data.filter((d) => d.name === 'Alenka');
-	$: matthias = data.filter((d) => d.name === 'Matthias');
-
-	$: stackedData = createStack(matthias);
+	$: stackedData = createStack(data);
 
 	$: if (stackedData && stackedData.length && width && height) {
-		console.log(stackedData);
-		const yearScale = scaleLinear()
+		yearScale = scaleLinear()
 			.domain(extent(data, (d) => d.year))
 			.range([height, 0]);
 
-		const thicknessScale = scaleLinear()
+		thicknessScale = scaleLinear()
 			.domain(
 				extent(stackedData.map((d) => d.map((dd) => [dd[0], dd[1]])).flat(2))
 			)
-			.range([0, width / 5]);
+			.range([0, width / 1.1]);
 
 		const areaGenerator = area()
 			.x((d) => yearScale(d.data[0]))
@@ -44,12 +41,10 @@
 
 		renderedData = stackedData.map((d) => areaGenerator(d));
 	}
-
-	$: console.log(renderedData);
 </script>
 
 <div
-	class="personality-flows"
+	class="personality-flow"
 	bind:clientWidth={width}
 	bind:clientHeight={height}
 >
@@ -58,6 +53,7 @@
 		height={height}
 	>
 		<g
+			style:--maxThickness="{thicknessScale?.range()[1] / 2}px"
 		>
 			{#each renderedData as d}
 				<path
@@ -71,13 +67,13 @@
 </div>
 
 <style>
-	.personality-flows {
+	.personality-flow {
 		width: 100%;
 		min-height: 2000px;
 		overflow: hidden;
 	}
 
 	g {
-    transform: translate(50%, 0%) rotate(90deg);
+    transform: translate(calc(50% + var(--maxThickness, 0)), 0%) rotate(90deg);
 	}
 </style>
