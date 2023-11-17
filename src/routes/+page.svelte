@@ -25,6 +25,7 @@
 		<PersonalityFlow
 			data={personalities.filter((d) => d.name === 'Alenka')}
 			universeHeight={universeHeight}
+			labels
 		/>
 		<PersonalityFlow
 			data={personalities.filter((d) => d.name === 'Matthias')}
