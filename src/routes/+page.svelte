@@ -9,17 +9,27 @@
 	$: ({ badges = [], personalities = [] } = data);
 
 	let modalOpen = false;
+	let universeHeight;
 
 	// $: console.log(personalities.filter((d) => d.name === 'Alenka'))
 </script>
 
 <main>
 	<button on:click={() => (modalOpen = true)}>Create your own star</button>
-	<BadgeUniverse data={badges} />
+	<BadgeUniverse
+		data={badges}
+		bind:height={universeHeight}
+	/>
 
 	<div class="personality-flows">
-		<PersonalityFlow data={personalities.filter((d) => d.name === 'Alenka')} />
-		<PersonalityFlow data={personalities.filter((d) => d.name === 'Matthias')} />
+		<PersonalityFlow
+			data={personalities.filter((d) => d.name === 'Alenka')}
+			universeHeight={universeHeight}
+		/>
+		<PersonalityFlow
+			data={personalities.filter((d) => d.name === 'Matthias')}
+			universeHeight={universeHeight}
+		/>
 	</div>
 	<Modal bind:isOpen={modalOpen}>
 		<span slot="header">Create your own star</span>

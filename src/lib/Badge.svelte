@@ -5,7 +5,7 @@
 	export let data = [5, 5, 4, 5, 5, 4, 2, 4, 2];
 	// data: collection, analysis, cleaning
 	// visualization: design, building, storytelling
-	// society: leadership, management, community ??
+	// society: leadership, management, community
 	export let width = 250;
 	export let spin = false;
 
@@ -19,6 +19,8 @@
 	};
 
 	const turfPoly = (vertices) => polygon([[...vertices, vertices[0]]]);
+
+	const spinSwitch = Math.random() > 0.5;
 
 	$: height = width;
 	$: badgeScale = width / 11;
@@ -108,7 +110,8 @@
 >
 	<g
 		transform="translate({width / 2} {height / 2})"
-		class:spin={spin}
+		class:spin={spin && spinSwitch}
+		class:spin-reverse={spin && !spinSwitch}
 	>
 		{#each [...badgePaths.values(), ...badgeIntersections.values()] as { fill, vertices }}
 			<path
@@ -125,12 +128,26 @@
 		animation: spin 180s linear infinite;
 	}
 
+	.spin-reverse {
+		transform-origin: center center;
+		animation: spin-reverse 180s linear infinite;
+	}
+
 	@keyframes spin {
 		0% {
 			rotate: 0deg;
 		}
 		100% {
 			rotate: 360deg;
+		}
+	}
+
+	@keyframes spin-reverse {
+		0% {
+			rotate: 0deg;
+		}
+		100% {
+			rotate: -360deg;
 		}
 	}
 </style>

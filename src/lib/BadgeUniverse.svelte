@@ -1,24 +1,30 @@
 <script>
-	import { scaleLinear, forceSimulation, forceCollide, forceCenter } from 'd3';
+	import { scalePow, forceSimulation, forceCollide } from 'd3';
 
 	import Badge from '$lib/Badge.svelte';
 
 	export let data;
+	export let height;
 
-	let width, height;
-	let simulationCounter = 0;
+	let width;
 	let renderedData = [];
 
-	$: dimensionScale = scaleLinear()
+	$: dimensionScale = scalePow()
 		.domain([0, 1])
-		.range([width * height / 20000, width * height / 10000]);
+		.range([width * height / 20000, width * height / 5000])
+		.exponent(3);
 
 	$: scaledData = data.map((d) => {
+		const isAlenkaOrMatthias = d.user_id < 0;
+		const isAlenka = isAlenkaOrMatthias && d.user_name === 'Alenka';
+		const isMatthias = isAlenkaOrMatthias && d.user_name === 'Matthias';
 		return {
 			...d,
-			x: width / 2,
-			y: height / 2,
-			r: dimensionScale(Math.random()) + 10,
+			x: width * Math.random(),
+			y: height * Math.random(),
+			r: (isAlenkaOrMatthias ? dimensionScale(1) : dimensionScale(Math.random() / 2)) + 10,
+			fx: isAlenka ? width / 4 : isMatthias ? (3 * width) / 4 : undefined,
+			fy: isAlenka || isMatthias ? height / 2 : undefined,
 		};
 	});
 
@@ -27,9 +33,9 @@
 			.nodes(scaledData)
 			.force(
 				'collision',
-				forceCollide((d) => d.r + 10)
+				forceCollide((d) => d.r)
 			)
-			.force('center', forceCenter((width || 0) / 2, (height || 0) / 2))
+			// .force('center', forceCenter((width || 0) / 2, (height || 0) / 2))
 			.on('tick', () => {
 				for (let i = 0; i < scaledData.length; i++) {
 					const d = scaledData[i];
@@ -67,6 +73,8 @@
 
 <style>
 	.badge-universe {
+		position: absolute;
+		z-index: 100;
 		width: 100%;
 		height: 80vh;
 		min-height: 400px;
