@@ -1,5 +1,16 @@
 <script>
-	import { stack, union, index, scaleLinear, extent, area, stackOffsetSilhouette, curveBumpX } from 'd3';
+	import {
+		stack,
+		union,
+		index,
+		scaleLinear,
+		extent,
+		area,
+		line,
+		stackOffsetSilhouette,
+		curveBumpX,
+		interpolateNumber,
+	} from 'd3';
 
 	export let data;
 
@@ -20,7 +31,30 @@
 		);
 	};
 
+	const createSubStack = (data, scale = 5) => {
+		const nLayers = data.length;
+		const positions = data[0].map((d) => d.data[0]);
+
+		const transformed = Array.from({ length: nLayers }).map((_, iLayer) => {
+			const layerData = data[iLayer];
+			const nLines = Math.max(1, Math.floor(Math.max(...layerData.map(d => Math.abs(d[0] - d[1]))) / scale));
+			return Array.from({ length: nLines }).map((_, iLine) => {
+				return positions.map((position, iPosition) => {
+					const value = interpolateNumber(
+						layerData[iPosition][0],
+						layerData[iPosition][1]
+					)(iLine / nLines);
+					return [position, value];
+				});
+			});
+		});
+
+		return transformed;
+	};
+
 	$: stackedData = createStack(data);
+
+	$: substackedData = createSubStack(stackedData, 10);
 
 	$: if (stackedData && stackedData.length && width && height) {
 		yearScale = scaleLinear()
@@ -39,8 +73,16 @@
 			.y1((d) => thicknessScale(d[1]))
 			.curve(curveBumpX);
 
-		renderedData = stackedData.map((d) => areaGenerator(d));
+		const lineGenerator = line()
+			.x((d) => yearScale(d[0]))
+			.y((d) => thicknessScale(d[1]))
+			.curve(curveBumpX);
+
+		// renderedAreaData = stackedData.map((d) => areaGenerator(d));
+		renderedData = substackedData.map((lineStack) => lineStack.map((d) => lineGenerator(d)));
 	}
+
+	$: console.log(substackedData);
 </script>
 
 <div
@@ -52,14 +94,13 @@
 		width={width}
 		height={height}
 	>
-		<g
-			style:--maxThickness="{thicknessScale?.range()[1] / 2}px"
-		>
+		<g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
 			{#each renderedData as d}
 				<path
 					d={d}
-					fill="pink"
-					stroke="black"
+					fill="none"
+					stroke="pink"
+					stroke-width="1"
 				/>
 			{/each}
 		</g>
@@ -74,6 +115,6 @@
 	}
 
 	g {
-    transform: translate(calc(50% + var(--maxThickness, 0)), 0%) rotate(90deg);
+		transform: translate(calc(50% + var(--maxThickness, 0)), 0%) rotate(90deg);
 	}
 </style>
