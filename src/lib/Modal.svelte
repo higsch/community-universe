@@ -24,6 +24,18 @@
 </dialog>
 
 <style>
+	dialog {
+		padding-top: 48px;
+	}
+
+	article {
+		max-height: calc(100vh - 96px);
+	}
+
+	section {
+		margin-bottom: 0;
+	}
+
 	a {
 		cursor: pointer;
 	}
