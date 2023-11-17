@@ -11,7 +11,7 @@
 
 	$: dimensionScale = scalePow()
 		.domain([0, 1])
-		.range([width * height / 20000, width * height / 5000])
+		.range([width / 40, Math.min(200, width / 7)])
 		.exponent(3);
 
 	$: scaledData = data.map((d) => {
