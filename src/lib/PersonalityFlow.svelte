@@ -5,12 +5,12 @@
 		index,
 		scaleLinear,
 		extent,
-		area,
 		line,
 		stackOffsetSilhouette,
 		curveBumpX,
 		interpolateNumber,
 	} from 'd3';
+	import { personalityColors } from '$utils/config';
 
 	export let data;
 
@@ -37,8 +37,13 @@
 
 		const transformed = Array.from({ length: nLayers }).map((_, iLayer) => {
 			const layerData = data[iLayer];
-			const nLines = Math.max(1, Math.floor(Math.max(...layerData.map(d => Math.abs(d[0] - d[1]))) / scale));
-			return Array.from({ length: nLines }).map((_, iLine) => {
+			const nLines = Math.max(
+				1,
+				Math.floor(
+					Math.max(...layerData.map((d) => Math.abs(d[0] - d[1]))) / scale
+				)
+			);
+			const subData =  Array.from({ length: nLines }).map((_, iLine) => {
 				return positions.map((position, iPosition) => {
 					const value = interpolateNumber(
 						layerData[iPosition][0],
@@ -47,6 +52,10 @@
 					return [position, value];
 				});
 			});
+			return {
+				data: subData,
+				key: layerData.key,
+			};
 		});
 
 		return transformed;
@@ -67,22 +76,21 @@
 			)
 			.range([0, width / 1.1]);
 
-		const areaGenerator = area()
-			.x((d) => yearScale(d.data[0]))
-			.y0((d) => thicknessScale(d[0]))
-			.y1((d) => thicknessScale(d[1]))
-			.curve(curveBumpX);
-
 		const lineGenerator = line()
 			.x((d) => yearScale(d[0]))
-			.y((d) => thicknessScale(d[1]))
+			.y((d) => thicknessScale(d[1]) + (Math.random() - 1) * 3)
 			.curve(curveBumpX);
 
-		// renderedAreaData = stackedData.map((d) => areaGenerator(d));
-		renderedData = substackedData.map((lineStack) => lineStack.map((d) => lineGenerator(d)));
+		renderedData = substackedData.map((lineStack, i) => {
+			return {
+				id: i,
+				path: lineStack.data.map((d) => lineGenerator(d)),
+				color: personalityColors[lineStack.key],
+			};
+		});
 	}
 
-	$: console.log(substackedData);
+	$: console.log(stackedData);
 </script>
 
 <div
@@ -95,12 +103,13 @@
 		height={height}
 	>
 		<g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
-			{#each renderedData as d}
+			{#each renderedData as { id, path, color } (id)}
 				<path
-					d={d}
+					d={path}
 					fill="none"
-					stroke="pink"
+					stroke={color}
 					stroke-width="1"
+					opacity="0.7"
 				/>
 			{/each}
 		</g>
