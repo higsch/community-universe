@@ -10,14 +10,12 @@
 
 	let modalOpen = false;
 	let universeHeight;
-
-	// $: console.log(personalities.filter((d) => d.name === 'Alenka'))
 </script>
 
 <main>
 	<button
 		on:click={() => (modalOpen = true)}
-		style:top="{universeHeight / 7}px">Create your own star</button
+		style:top="{universeHeight / 7}px">Add your star to the universe</button
 	>
 
 	<BadgeUniverse

@@ -78,7 +78,7 @@
 				<Badge
 					data={data}
 					width={r * 2}
-					spin
+					spin={!isAlenkaOrMatthias}
 				/>
 			</div>
 		{/each}
@@ -90,9 +90,9 @@
 		position: absolute;
 		z-index: 100;
 		width: 100%;
-		height: 80vh;
+		height: 60vh;
 		min-height: 400px;
-		max-height: 500px;
+		max-height: 1000px;
 	}
 
 	.badge-container {
