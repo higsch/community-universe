@@ -1,13 +1,25 @@
 <script>
-	import { scalePow, forceSimulation, forceCollide } from 'd3';
+	import { scalePow, scaleLinear, scaleSqrt } from 'd3';
+
+	import { layoutForce } from '$utils/force';
 
 	import Badge from '$lib/Badge.svelte';
 
 	export let data;
 	export let height;
 
+	const padding = 20;
+
 	let width;
 	let renderedData = [];
+
+	$: xScale = scaleLinear()
+		.domain([0, 1])
+		.range([padding, width - padding]);
+
+	$: yScale = scaleSqrt()
+		.domain([0, 1])
+		.range([height - padding, padding]);
 
 	$: dimensionScale = scalePow()
 		.domain([0, 1])
@@ -20,33 +32,34 @@
 		const isMatthias = isAlenkaOrMatthias && d.user_name === 'Matthias';
 		return {
 			...d,
-			x: width * Math.random(),
-			y: height * Math.random(),
-			r: (isAlenkaOrMatthias ? dimensionScale(1) : dimensionScale(Math.random() / 2)) + 10,
-			fx: isAlenka ? width / 4 : isMatthias ? (3 * width) / 4 : undefined,
+			x: isAlenka
+				? width / 4
+				: isMatthias
+				? (3 * width) / 4
+				: xScale(Math.random()),
+			y: isAlenka || isMatthias ? height / 2 : yScale(Math.random()),
+			targetY: isAlenka || isMatthias ? height / 2 : yScale(Math.random()),
+			r:
+				(isAlenkaOrMatthias
+					? dimensionScale(1)
+					: dimensionScale(Math.random() / 2)) + 10,
+			isAlenkaOrMatthias,
+			fx: isAlenka
+				? width / 4
+				: isMatthias
+				? (3 * width) / 4
+				: undefined,
 			fy: isAlenka || isMatthias ? height / 2 : undefined,
 		};
 	});
 
-	$: if (scaledData && scaledData.length && width)
-		forceSimulation()
-			.nodes(scaledData)
-			.force(
-				'collision',
-				forceCollide((d) => d.r)
-			)
-			// .force('center', forceCenter((width || 0) / 2, (height || 0) / 2))
-			.on('tick', () => {
-				for (let i = 0; i < scaledData.length; i++) {
-					const d = scaledData[i];
-					d.x = Math.max(d.r, Math.min(width - d.r, d.x));
-					d.y = Math.max(d.r, Math.min(height - d.r, d.y));
-				}
-			})
-			.on('end', () => {
-				renderedData = scaledData;
-			})
-			.alphaMin(0.5);
+	$: if (scaledData && scaledData.length && width) {
+		(async () => renderedData = await layoutForce({
+			data: scaledData,
+			width,
+			height
+		}))();
+	}
 </script>
 
 <div
@@ -55,11 +68,12 @@
 	bind:clientHeight={height}
 >
 	{#if width}
-		{#each renderedData as { x, y, r, data }}
+		{#each renderedData as { x, y, r, data, isAlenkaOrMatthias }}
 			<div
 				class="badge-container"
 				style:top="{y}px"
 				style:left="{x}px"
+				style:z-index={isAlenkaOrMatthias ? 100 : 200}
 			>
 				<Badge
 					data={data}
@@ -84,6 +98,6 @@
 	.badge-container {
 		position: absolute;
 		transform: translateX(-50%) translateY(-50%);
-    transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
 	}
 </style>
