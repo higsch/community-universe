@@ -15,7 +15,11 @@
 </script>
 
 <main>
-	<button on:click={() => (modalOpen = true)}>Create your own star</button>
+	<button
+		on:click={() => (modalOpen = true)}
+		style:top="{universeHeight / 7}px">Create your own star</button
+	>
+
 	<BadgeUniverse
 		data={badges}
 		bind:height={universeHeight}
@@ -44,6 +48,16 @@
 <style>
 	main {
 		position: relative;
+	}
+
+	button {
+		position: absolute;
+		left: 50%;
+		width: 50%;
+		min-width: 300px;
+		max-width: 400px;
+		z-index: 300;
+		transform: translateX(-50%);
 	}
 
 	.personality-flows {

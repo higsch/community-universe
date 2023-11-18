@@ -11,6 +11,7 @@ export const personalityColors = {
 	Journalist: '#dc0ab4',
 	Freelancer: '#00bfa0',
 };
+export const personalityHeight = 3000;
 export const finalStarAlenka = [5, 4, 4, 5, 2, 4, 3, 4, 3];
 export const finalStarMatthias = [5, 5, 4, 5, 5, 4, 3, 4, 2];
 // data: collection, analysis, cleaning

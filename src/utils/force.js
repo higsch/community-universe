@@ -25,6 +25,6 @@ export const layoutForce = ({ data, width, height }) => {
 			.on('end', () => {
 				resolve(copyData);
 			})
-			.alphaMin(0.5);
+			.alphaMin(0.8);
 	});
 };

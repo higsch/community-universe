@@ -29,7 +29,7 @@
 	span {
 		position: absolute;
 		font-size: 0.8rem;
-		transform: translateY(-50%);
+		transform: translateX(-50%) translateY(-50%);
 		text-shadow: 0 0 5px var(--background-color),
 			0 0 5px var(--background-color), 0 0 5px var(--background-color),
 			0 0 5px var(--background-color);

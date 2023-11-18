@@ -1,6 +1,6 @@
 <script>
 	import { scaleLinear, extent, line, curveBumpX } from 'd3';
-	import { personalityColors } from '$utils/config';
+	import { personalityColors, personalityHeight } from '$utils/config';
 	import { createStack, reduceLayers, createSubStack } from '$utils/stack';
 
 	import YearLabels from '$lib/YearLabels.svelte';
@@ -68,6 +68,7 @@
 	bind:clientWidth={width}
 	bind:clientHeight={height}
 	style:--universeHeight="{universeHeight}px"
+	style:--personalityHeight="{personalityHeight}px"
 >
 	<svg
 		width={width}
@@ -142,7 +143,7 @@
 	.personality-flow {
 		flex: 1;
 		position: relative;
-		min-height: calc(var(--universeHeight) + 2000px);
+		min-height: calc(var(--universeHeight) + var(--personalityHeight));
 	}
 
 	svg {
