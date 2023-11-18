@@ -101,8 +101,15 @@
 
 <style>
 	.personality-flow {
-		width: 100%;
+		flex: 1;
+		position: relative;
 		min-height: calc(var(--universeHeight) + 2000px);
+	}
+
+	svg {
+		position: absolute;
+		top: 0;
+		left: 0;
 	}
 
 	g {

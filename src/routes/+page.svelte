@@ -48,5 +48,6 @@
 
 	.personality-flows {
 		display: flex;
+		width: 100%;
 	}
 </style>

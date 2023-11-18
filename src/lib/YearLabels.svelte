@@ -23,9 +23,12 @@
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 0;
   }
 
   span {
     position: absolute;
+    font-size: 0.8rem;
+    transform: translateY(-50%);
   }
 </style>
