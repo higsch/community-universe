@@ -23,7 +23,7 @@
 	$: reducedData = reduceLayers({ data: stackedData, scale: 0.9 });
 	$: substackedData = createSubStack({
 		data: reducedData,
-		scale: 4,
+		scale: 3,
 	});
 
 	$: if (
@@ -35,7 +35,7 @@
 	) {
 		yearScale = scaleLinear()
 			.domain(extent(data, (d) => d.year))
-			.range([height, universeHeight]);
+			.range([personalityHeight + universeHeight, universeHeight]);
 
 		thicknessScale = scaleLinear()
 			.domain(
@@ -69,6 +69,7 @@
 	bind:clientHeight={height}
 	style:--universeHeight="{universeHeight}px"
 	style:--personalityHeight="{personalityHeight}px"
+	style:--tailHeight="{1000}px"
 >
 	<svg
 		width={width}
@@ -143,7 +144,7 @@
 	.personality-flow {
 		flex: 1;
 		position: relative;
-		min-height: calc(var(--universeHeight) + var(--personalityHeight));
+		min-height: calc(var(--universeHeight) + var(--personalityHeight) + var(--tailHeight));
 	}
 
 	svg {

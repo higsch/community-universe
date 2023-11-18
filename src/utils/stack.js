@@ -8,12 +8,18 @@ import {
 } from 'd3';
 
 export const createStack = ({ data }) => {
+	const minData = data.map(d => {
+		return {
+			...d,
+			value: d.value < 5 ? 5 : d.value
+		};
+	});
 	return stack()
-		.keys(union(data.map((d) => d.role)))
+		.keys(union(minData.map((d) => d.role)))
 		.value(([, d], key) => d.get(key).value)
 		.offset(stackOffsetSilhouette)(
 		index(
-			data,
+			minData,
 			(d) => d.year,
 			(d) => d.role
 		)

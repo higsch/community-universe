@@ -110,7 +110,7 @@
 			name="values"
 			value={data}
 		/>
-		<button type="submit">Add your badge</button>
+		<button type="submit">Add your star</button>
 	</form>
 </div>
 
