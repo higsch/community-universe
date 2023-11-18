@@ -73,6 +73,38 @@
 		width={width}
 		height={height}
 	>
+		<defs>
+			<linearGradient
+				id="dim-gradient"
+				gradientTransform="rotate(90)"
+			>
+				<stop
+					offset="0%"
+					stop-color="var(--background-color)"
+					stop-opacity="1.0"
+				/>
+				<stop
+					offset="50%"
+					stop-color="var(--background-color)"
+					stop-opacity="1.0"
+				/>
+				<stop
+					offset="70%"
+					stop-color="var(--background-color)"
+					stop-opacity="0.9"
+				/>
+				<stop
+					offset="80%"
+					stop-color="var(--background-color)"
+					stop-opacity="0.7"
+				/>
+				<stop
+					offset="100%"
+					stop-color="var(--background-color)"
+					stop-opacity="0.0"
+				/>
+			</linearGradient>
+		</defs>
 		<g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
 			{#each renderedData as { id, paths } (id)}
 				<path
@@ -93,6 +125,13 @@
 				/>
 			{/each}
 		</g>
+		<rect
+			x="0"
+			y="0"
+			width={width}
+			height={universeHeight}
+			fill="url('#dim-gradient')"
+		/>
 	</svg>
 	{#if yearLabels && yearScale}
 		<YearLabels scale={yearScale} />
