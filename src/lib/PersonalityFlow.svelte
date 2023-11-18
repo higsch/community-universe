@@ -1,5 +1,12 @@
 <script>
-	import { scaleLinear, extent, line, curveBumpX } from 'd3';
+	import {
+		scaleLinear,
+		extent,
+		line,
+		curveBumpX,
+		scaleOrdinal,
+		range,
+	} from 'd3';
 	import { personalityColors, personalityHeight } from '$utils/config';
 	import { createStack, reduceLayers, createSubStack } from '$utils/stack';
 
@@ -9,6 +16,9 @@
 	export let universeHeight;
 	export let strokeWidth = 1.0;
 	export let yearLabels = false;
+
+	const tailHeight = 1000;
+	const padding = 20;
 
 	let width, height;
 	let renderedData = [];
@@ -43,6 +53,10 @@
 			)
 			.range([0, width]);
 
+		const roleTailScale = scaleLinear()
+			.domain([0, substackedData.length - 1])
+			.range([padding, width - padding]);
+
 		renderedData = substackedData.map((lineStack, i) => {
 			const coords = lineStack.data.map((d) =>
 				d.map((dd) => [
@@ -50,7 +64,10 @@
 					thicknessScale(dd[1]) + (Math.random() - 1) * 3,
 				])
 			);
+
+			const tailX = roleTailScale(substackedData.map(d => d.key).indexOf(lineStack.key));
 			const extendedCoords = coords.map((d) => [
+				[tailX, personalityHeight + universeHeight + tailHeight].reverse(),
 				...d,
 				[width / 2, universeHeight / 2].reverse(),
 			]);
@@ -69,7 +86,7 @@
 	bind:clientHeight={height}
 	style:--universeHeight="{universeHeight}px"
 	style:--personalityHeight="{personalityHeight}px"
-	style:--tailHeight="{1000}px"
+	style:--tailHeight="{tailHeight}px"
 >
 	<svg
 		width={width}
@@ -144,7 +161,9 @@
 	.personality-flow {
 		flex: 1;
 		position: relative;
-		min-height: calc(var(--universeHeight) + var(--personalityHeight) + var(--tailHeight));
+		min-height: calc(
+			var(--universeHeight) + var(--personalityHeight) + var(--tailHeight)
+		);
 	}
 
 	svg {
