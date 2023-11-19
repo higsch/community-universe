@@ -163,7 +163,7 @@
 				y="{yearScale(y)}px"
 				src={src}
 				alt={alt}
-				dimension="{Math.min(675, thicknessScale.range()[1] / 1.5)}px"
+				dimension="{Math.max(300, Math.min(675, thicknessScale.range()[1] / 1.5))}px"
 			/>
 		{/each}
 	{/if}
