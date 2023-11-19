@@ -47,6 +47,7 @@
 <style>
 	main {
 		position: relative;
+		width: 100%;
 	}
 
 	button {
