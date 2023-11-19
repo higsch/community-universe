@@ -1,4 +1,6 @@
 <script>
+	import { names, careerImages } from '$utils/config';
+
 	import Modal from '$lib/Modal.svelte';
 	import BadgeUniverse from '$lib/BadgeUniverse.svelte';
 	import BadgeConfigurator from '$lib/BadgeConfigurator.svelte';
@@ -24,15 +26,14 @@
 	/>
 
 	<div class="personality-flows">
+		{#each names as name, i}
 		<PersonalityFlow
-			data={personalities.filter((d) => d.name === 'Alenka')}
+			data={personalities.filter((d) => d.name === name)}
+			careerImages={careerImages[name]}
 			universeHeight={universeHeight}
-			yearLabels
+			yearLabels={i === 0}
 		/>
-		<PersonalityFlow
-			data={personalities.filter((d) => d.name === 'Matthias')}
-			universeHeight={universeHeight}
-		/>
+		{/each}
 	</div>
 	<Modal bind:isOpen={modalOpen}>
 		<span slot="header">Create your own star</span>
