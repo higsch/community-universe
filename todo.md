@@ -1,4 +1,4 @@
-- [ ] Flow labels
+- [x] Flow labels
 - [x] Star background
 - [ ] Sweden flag image
 - [ ] Idol images

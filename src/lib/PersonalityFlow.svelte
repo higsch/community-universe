@@ -15,7 +15,7 @@
 	export let yearLabels = false;
 	export let flowLabels;
 
-	const padding = 20;
+	const padding = 48;
 
 	let width, height;
 	let renderedData = [];
@@ -155,6 +155,7 @@
 			<FlowLabels
 				name={name}
 				data={flowLabels}
+				isNarrow={width < 300}
 			/>
 			<!-- <text
 			text-anchor="middle"
