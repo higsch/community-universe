@@ -1,6 +1,7 @@
 <script>
 	import { names, careerImages } from '$utils/config';
 
+	import Background from '$lib/Background.svelte';
 	import Modal from '$lib/Modal.svelte';
 	import BadgeUniverse from '$lib/BadgeUniverse.svelte';
 	import BadgeConfigurator from '$lib/BadgeConfigurator.svelte';
@@ -10,11 +11,17 @@
 
 	$: ({ badges = [], personalities = [] } = data);
 
+	let width, height;
 	let modalOpen = false;
 	let universeHeight;
 </script>
 
-<main>
+<main
+	bind:clientWidth={width}
+	bind:clientHeight={height}
+>
+	<Background width={width} height={height} />
+	
 	<button
 		on:click={() => (modalOpen = true)}
 		style:top="{universeHeight / 7}px">Add your star to the universe</button
@@ -61,6 +68,8 @@
 	}
 
 	.personality-flows {
+		position: relative;
+		z-index: 1;
 		display: flex;
 		width: 100%;
 	}

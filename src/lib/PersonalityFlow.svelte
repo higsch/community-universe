@@ -173,6 +173,7 @@
 	.personality-flow {
 		flex: 1;
 		position: relative;
+		z-index: 0;
 		min-height: calc(
 			var(--universeHeight) + var(--personalityHeight) + var(--tailHeight)
 		);
@@ -182,5 +183,6 @@
 		position: absolute;
 		top: 0;
 		left: 0;
+		z-index: 0;
 	}
 </style>

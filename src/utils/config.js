@@ -25,54 +25,64 @@ export const careerImages = {
 			x: '50%',
 			y: 2011.5,
 			src: 'img/alenka_lab.png',
-			alt: 'Alenka in the lab'
+			alt: 'Alenka in the lab',
 		},
 		{
 			x: '20%',
 			y: 2018.5,
 			src: 'img/alenka_pi.png',
-			alt: 'Alenka as a PI'
+			alt: 'Alenka as a PI',
 		},
 		{
 			x: '60%',
 			y: 2020.5,
 			src: 'img/alenka_computer.png',
-			alt: 'Alenka as a data scientist'
+			alt: 'Alenka as a data scientist',
 		},
 		{
 			x: '30%',
 			y: 2022.5,
 			src: 'img/alenka_researcher.png',
-			alt: 'Alenka as a researcher'
-		}
+			alt: 'Alenka as a researcher',
+		},
 	],
 	Matthias: [
 		{
 			x: '50%',
 			y: 2014.2,
 			src: 'img/matthias_lab.png',
-			alt: 'Matthias in the lab'
+			alt: 'Matthias in the lab',
 		},
 		{
 			x: '5%',
 			y: 2019.5,
 			src: 'img/matthias_pi.png',
-			alt: 'Matthias as a PI'
+			alt: 'Matthias as a PI',
 		},
 		{
 			x: '30%',
 			y: 2021.2,
 			src: 'img/matthias_freelance.png',
-			alt: 'Matthias as a freelancer'
+			alt: 'Matthias as a freelancer',
 		},
 		{
 			x: '70%',
 			y: 2021.9,
 			src: 'img/matthias_journalist.png',
-			alt: 'Matthias as a journalist'
-		}
-	]
+			alt: 'Matthias as a journalist',
+		},
+	],
 };
+
+export const backgroundDotColors = [
+	'#E24C80',
+	'#EB6E75',
+	'#F28D6F',
+	'#F6A972',
+	'#F9C480',
+	'#FBDD97',
+	'#FDF6B5',
+];
 
 // export const personalityColors = {
 //   Analyst: '#b3e2cd',
