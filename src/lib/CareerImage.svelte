@@ -6,8 +6,6 @@
   export let dimension;
 
 	let isOpen = false;
-
-  $: console.log(isOpen)
 </script>
 
 <button

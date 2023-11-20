@@ -6,13 +6,15 @@
 	import YearLabels from '$lib/YearLabels.svelte';
 	import CareerImage from '$lib/CareerImage.svelte';
 
+	export let name;
 	export let data;
 	export let careerImages;
 	export let universeHeight;
 	export let strokeWidth = 1.0;
 	export let yearLabels = false;
+	export let flowLabels;
 
-	const tailHeight = 1000;
+	const tailHeight = 700;
 	const padding = 20;
 
 	let width, height;
@@ -70,6 +72,7 @@
 			]);
 			return {
 				id: i,
+				key: lineStack.key,
 				paths: extendedCoords.map((d) => lineGenerator(d)),
 				color: personalityColors[lineStack.key],
 			};
@@ -133,17 +136,52 @@
 						opacity="0.9"
 					/>
 				{/each}
-				{#each renderedData as { id, paths, color } (id)}
-					<path
-						d={paths}
-						fill="none"
-						stroke={color}
-						stroke-width={strokeWidth}
-						opacity="0.7"
-					/>
+				{#each renderedData as { id, key, paths, color }}
+					{#each paths as path, i}
+						<path
+							id={i === Math.floor(paths.length / 2)
+								? `${name}-label-path-${key}`
+								: undefined}
+							d={path}
+							fill="none"
+							stroke={color}
+							stroke-width={strokeWidth}
+							opacity="0.7"
+						/>
+					{/each}
 				{/each}
 			</g>
 
+			<g class="flow-labels">
+				{#each flowLabels as { label, href, offset, color }}
+					<text
+						font-family="Handlee"
+						dominant-baseline="middle"
+						fill="var(--background-color)"
+						stroke="var(--background-color)"
+						stroke-width="12"
+					>
+						<textPath
+							href="#{name}-{href}"
+							startOffset={offset}>{label}</textPath
+						>
+					</text>
+					<text
+						font-family="Handlee"
+						dominant-baseline="middle"
+						fill={color}
+					>
+						<textPath
+							href="#{name}-{href}"
+							startOffset={offset}>{label}</textPath
+						>
+					</text>
+				{/each}
+			</g>
+			<!-- <text
+			text-anchor="middle"
+			dominant-baseline="middle"
+		> -->
 			<rect
 				x="0"
 				y="0"
@@ -163,7 +201,10 @@
 				y="{yearScale(y)}px"
 				src={src}
 				alt={alt}
-				dimension="{Math.max(300, Math.min(675, thicknessScale.range()[1] / 1.5))}px"
+				dimension="{Math.max(
+					300,
+					Math.min(675, thicknessScale.range()[1] / 1.5)
+				)}px"
 			/>
 		{/each}
 	{/if}

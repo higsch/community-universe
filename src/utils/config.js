@@ -12,6 +12,98 @@ export const personalityColors = {
 	Journalist: '#dc0ab4',
 	Freelancer: '#00bfa0',
 };
+
+export const flowLabels = {
+	Alenka: [
+		{
+			href: 'label-path-Analyst',
+			label: 'Analyst',
+			color: personalityColors.Analyst,
+			offset: '16',
+		},
+		{
+			href: 'label-path-Leadership',
+			label: 'Leadership',
+			color: personalityColors.Leadership,
+			offset: '16',
+		},
+		{
+			href: 'label-path-Designer',
+			label: 'Designer',
+			color: personalityColors.Designer,
+			offset: '16',
+		},
+		{
+			href: 'label-path-Developer/Engineer',
+			label: 'Developer/Engineer',
+			color: personalityColors['Developer/Engineer'],
+			offset: '16',
+		},
+		{
+			href: 'label-path-Scientist',
+			label: 'Scientist',
+			color: personalityColors.Scientist,
+			offset: '16',
+		},
+		{
+			href: 'label-path-Journalist',
+			label: 'Journalist',
+			color: personalityColors.Journalist,
+			offset: '16',
+		},
+		{
+			href: 'label-path-Freelancer',
+			label: 'Freelancer',
+			color: personalityColors.Freelancer,
+			offset: '16',
+		}
+	],
+	Matthias: [
+		{
+			href: 'label-path-Analyst',
+			label: 'Analyst',
+			color: personalityColors.Analyst,
+			offset: '16',
+		},
+		{
+			href: 'label-path-Leadership',
+			label: 'Leadership',
+			color: personalityColors.Leadership,
+			offset: '16',
+		},
+		{
+			href: 'label-path-Designer',
+			label: 'Designer',
+			color: personalityColors.Designer,
+			offset: '16',
+		},
+		{
+			href: 'label-path-Developer/Engineer',
+			label: 'Developer/Engineer',
+			color: personalityColors['Developer/Engineer'],
+			offset: '16',
+		},
+		{
+			href: 'label-path-Scientist',
+			label: 'Scientist',
+			color: personalityColors.Scientist,
+			offset: '16',
+		},
+		{
+			href: 'label-path-Journalist',
+			label: 'Journalist',
+			color: personalityColors.Journalist,
+			offset: '16',
+		},
+		{
+			href: 'label-path-Freelancer',
+			label: 'Freelancer',
+			color: personalityColors.Freelancer,
+			offset: '16',
+		}
+	]
+};
+
 export const personalityHeight = 5000;
 export const finalStarAlenka = [5, 4, 4, 5, 2, 4, 3, 4, 3];
 export const finalStarMatthias = [5, 5, 4, 5, 5, 4, 3, 4, 2];

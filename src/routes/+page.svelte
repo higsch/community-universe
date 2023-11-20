@@ -1,5 +1,5 @@
 <script>
-	import { names, careerImages } from '$utils/config';
+	import { names, careerImages, flowLabels } from '$utils/config';
 
 	import Background from '$lib/Background.svelte';
 	import Modal from '$lib/Modal.svelte';
@@ -35,10 +35,12 @@
 	<div class="personality-flows">
 		{#each names as name, i}
 		<PersonalityFlow
+			name={name}
 			data={personalities.filter((d) => d.name === name)}
 			careerImages={careerImages[name]}
 			universeHeight={universeHeight}
 			yearLabels={i === 0}
+			flowLabels={flowLabels[name]}
 		/>
 		{/each}
 	</div>

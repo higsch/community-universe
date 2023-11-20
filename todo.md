@@ -1,5 +1,5 @@
 - [ ] Flow labels
-- [ ] Star background
+- [x] Star background
 - [ ] Sweden flag image
 - [ ] Idol images
   - Alenka
