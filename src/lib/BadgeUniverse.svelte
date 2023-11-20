@@ -23,7 +23,7 @@
 
 	$: dimensionScale = scalePow()
 		.domain([0, 1])
-		.range([width / 40, Math.min(200, width / 7)])
+		.range([width / 100, Math.min(100, width / 30)])
 		.exponent(3);
 
 	$: scaledData = data.map((d) => {
@@ -41,8 +41,8 @@
 			targetY: isAlenka || isMatthias ? height / 2 : yScale(Math.random()),
 			r:
 				(isAlenkaOrMatthias
-					? dimensionScale(1)
-					: dimensionScale(Math.random() / 2)) + 10,
+					? width / 7
+					: dimensionScale(Math.random())) + 10,
 			isAlenkaOrMatthias,
 			fx: isAlenka
 				? width / 4

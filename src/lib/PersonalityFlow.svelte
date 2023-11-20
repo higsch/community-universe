@@ -1,6 +1,11 @@
 <script>
 	import { scaleLinear, extent, line, curveBumpY } from 'd3';
-	import { personalityColors, personalityHeight, tailHeight } from '$utils/config';
+
+	import {
+		personalityColors,
+		personalityHeight,
+		tailHeight,
+	} from '$utils/config';
 	import { createStack, reduceLayers, createSubStack } from '$utils/stack';
 
 	import FlowLabels from '$lib/FlowLabels.svelte';
@@ -157,10 +162,7 @@
 				data={flowLabels}
 				isNarrow={width < 300}
 			/>
-			<!-- <text
-			text-anchor="middle"
-			dominant-baseline="middle"
-		> -->
+
 			<rect
 				x="0"
 				y="0"
