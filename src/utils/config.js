@@ -150,10 +150,34 @@ export const flowLabels = {
 			offset: '16',
 		},
 		{
+			href: 'label-path-Analyst',
+			label: 'Analyst',
+			color: personalityColors.Analyst,
+			offset: '75%',
+		},
+		{
+			href: 'label-path-Analyst',
+			label: 'Analyst',
+			color: personalityColors.Analyst,
+			offset: '92%',
+		},
+		{
 			href: 'label-path-Leadership',
 			label: 'Leadership',
 			color: personalityColors.Leadership,
 			offset: '16',
+		},
+		{
+			href: 'label-path-Leadership',
+			label: 'Leadership',
+			color: personalityColors.Leadership,
+			offset: '79%',
+		},
+		{
+			href: 'label-path-Leadership',
+			label: 'Leadership',
+			color: personalityColors.Leadership,
+			offset: '92%',
 		},
 		{
 			href: 'label-path-Designer',
@@ -162,10 +186,28 @@ export const flowLabels = {
 			offset: '16',
 		},
 		{
+			href: 'label-path-Designer',
+			label: 'Designer',
+			color: personalityColors.Designer,
+			offset: '92%',
+		},
+		{
 			href: 'label-path-Developer/Engineer',
 			label: 'Developer/Engineer',
 			color: personalityColors['Developer/Engineer'],
 			offset: '16',
+		},
+		{
+			href: 'label-path-Developer/Engineer',
+			label: 'Developer/Engineer',
+			color: personalityColors['Developer/Engineer'],
+			offset: '52%',
+		},
+		{
+			href: 'label-path-Developer/Engineer',
+			label: 'Developer/Engineer',
+			color: personalityColors['Developer/Engineer'],
+			offset: '92%',
 		},
 		{
 			href: 'label-path-Scientist',
@@ -174,16 +216,58 @@ export const flowLabels = {
 			offset: '16',
 		},
 		{
+			href: 'label-path-Scientist',
+			label: 'Scientist',
+			color: personalityColors.Scientist,
+			offset: '17%',
+		},
+		{
+			href: 'label-path-Scientist',
+			label: 'Scientist',
+			color: personalityColors.Scientist,
+			offset: '77%',
+		},
+		{
+			href: 'label-path-Scientist',
+			label: 'Scientist',
+			color: personalityColors.Scientist,
+			offset: '92%',
+		},
+		{
 			href: 'label-path-Journalist',
 			label: 'Journalist',
 			color: personalityColors.Journalist,
 			offset: '16',
 		},
 		{
+			href: 'label-path-Journalist',
+			label: 'Journalist',
+			color: personalityColors.Journalist,
+			offset: '82%',
+		},
+		{
+			href: 'label-path-Journalist',
+			label: 'Journalist',
+			color: personalityColors.Journalist,
+			offset: '92%',
+		},
+		{
 			href: 'label-path-Freelancer',
 			label: 'Freelancer',
 			color: personalityColors.Freelancer,
 			offset: '16',
+		},
+		{
+			href: 'label-path-Freelancer',
+			label: 'Freelancer',
+			color: personalityColors.Freelancer,
+			offset: '80%',
+		},
+		{
+			href: 'label-path-Freelancer',
+			label: 'Freelancer',
+			color: personalityColors.Freelancer,
+			offset: '92%',
 		}
 	]
 };
