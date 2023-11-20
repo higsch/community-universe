@@ -90,7 +90,7 @@
 		position: absolute;
 		z-index: 100;
 		width: 100%;
-		height: 60vh;
+		height: 80vh;
 		min-height: 400px;
 		max-height: 1000px;
 	}
