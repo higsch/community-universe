@@ -11,7 +11,7 @@
 			dy="7px"
 			fill="var(--background-color)"
 			stroke="var(--background-color)"
-			stroke-width="8"
+			stroke-width="0.3rem"
       stroke-opacity="1.0"
 		>
 			<textPath

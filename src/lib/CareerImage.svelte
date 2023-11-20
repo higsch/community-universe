@@ -34,8 +34,8 @@
 	}
 
   figure {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     border: 3px solid var(--card-background-color);
     border-radius: 50%;
     transition: all 0.3s ease-in-out;
