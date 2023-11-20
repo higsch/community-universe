@@ -22,10 +22,34 @@ export const flowLabels = {
 			offset: '16',
 		},
 		{
+			href: 'label-path-Analyst',
+			label: 'Analyst',
+			color: personalityColors.Analyst,
+			offset: '32%',
+		},
+		{
+			href: 'label-path-Analyst',
+			label: 'Analyst',
+			color: personalityColors.Analyst,
+			offset: '90%',
+		},
+		{
 			href: 'label-path-Leadership',
 			label: 'Leadership',
 			color: personalityColors.Leadership,
 			offset: '16',
+		},
+		{
+			href: 'label-path-Leadership',
+			label: 'Leadership',
+			color: personalityColors.Leadership,
+			offset: '75%',
+		},
+		{
+			href: 'label-path-Leadership',
+			label: 'Leadership',
+			color: personalityColors.Leadership,
+			offset: '90%',
 		},
 		{
 			href: 'label-path-Designer',
@@ -34,16 +58,52 @@ export const flowLabels = {
 			offset: '16',
 		},
 		{
+			href: 'label-path-Designer',
+			label: 'Designer',
+			color: personalityColors.Designer,
+			offset: '77%',
+		},
+		{
+			href: 'label-path-Designer',
+			label: 'Designer',
+			color: personalityColors.Designer,
+			offset: '90%',
+		},
+		{
 			href: 'label-path-Developer/Engineer',
 			label: 'Developer/Engineer',
 			color: personalityColors['Developer/Engineer'],
 			offset: '16',
 		},
 		{
+			href: 'label-path-Developer/Engineer',
+			label: 'Developer/Engineer',
+			color: personalityColors['Developer/Engineer'],
+			offset: '78%',
+		},
+		{
+			href: 'label-path-Developer/Engineer',
+			label: 'Developer/Engineer',
+			color: personalityColors['Developer/Engineer'],
+			offset: '90%',
+		},
+		{
 			href: 'label-path-Scientist',
 			label: 'Scientist',
 			color: personalityColors.Scientist,
 			offset: '16',
+		},
+		{
+			href: 'label-path-Scientist',
+			label: 'Scientist',
+			color: personalityColors.Scientist,
+			offset: '20%',
+		},
+		{
+			href: 'label-path-Scientist',
+			label: 'Scientist',
+			color: personalityColors.Scientist,
+			offset: '90%',
 		},
 		{
 			href: 'label-path-Journalist',
@@ -56,6 +116,12 @@ export const flowLabels = {
 			label: 'Freelancer',
 			color: personalityColors.Freelancer,
 			offset: '16',
+		},
+		{
+			href: 'label-path-Freelancer',
+			label: 'Freelancer',
+			color: personalityColors.Freelancer,
+			offset: '90%',
 		}
 	],
 	Matthias: [
@@ -105,6 +171,7 @@ export const flowLabels = {
 };
 
 export const personalityHeight = 5000;
+export const tailHeight = 600;
 export const finalStarAlenka = [5, 4, 4, 5, 2, 4, 3, 4, 3];
 export const finalStarMatthias = [5, 5, 4, 5, 5, 4, 3, 4, 2];
 // data: collection, analysis, cleaning

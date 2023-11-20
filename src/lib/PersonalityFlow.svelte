@@ -1,8 +1,9 @@
 <script>
 	import { scaleLinear, extent, line, curveBumpY } from 'd3';
-	import { personalityColors, personalityHeight } from '$utils/config';
+	import { personalityColors, personalityHeight, tailHeight } from '$utils/config';
 	import { createStack, reduceLayers, createSubStack } from '$utils/stack';
 
+	import FlowLabels from '$lib/FlowLabels.svelte';
 	import YearLabels from '$lib/YearLabels.svelte';
 	import CareerImage from '$lib/CareerImage.svelte';
 
@@ -14,7 +15,6 @@
 	export let yearLabels = false;
 	export let flowLabels;
 
-	const tailHeight = 700;
 	const padding = 20;
 
 	let width, height;
@@ -152,32 +152,10 @@
 				{/each}
 			</g>
 
-			<g class="flow-labels">
-				{#each flowLabels as { label, href, offset, color }}
-					<text
-						font-family="Handlee"
-						dominant-baseline="middle"
-						fill="var(--background-color)"
-						stroke="var(--background-color)"
-						stroke-width="12"
-					>
-						<textPath
-							href="#{name}-{href}"
-							startOffset={offset}>{label}</textPath
-						>
-					</text>
-					<text
-						font-family="Handlee"
-						dominant-baseline="middle"
-						fill={color}
-					>
-						<textPath
-							href="#{name}-{href}"
-							startOffset={offset}>{label}</textPath
-						>
-					</text>
-				{/each}
-			</g>
+			<FlowLabels
+				name={name}
+				data={flowLabels}
+			/>
 			<!-- <text
 			text-anchor="middle"
 			dominant-baseline="middle"
