@@ -1,6 +1,6 @@
 - [x] Flow labels
 - [x] Star background
-- [ ] Sweden flag image
+- [x] Sweden flag image
 - [x] Idol images
   - Alenka
     - first: Nadieh Bremer, Gabriela Plucinska, Helena Jambor
@@ -9,7 +9,7 @@
     - impressing pieces (Maarten, Nadieh)
 - [ ] lightning star with name
 - [x] DVS badge legend
-- [ ] link to website
-- [ ] end screen
+- [ ] link to website on top?
+- [x] end screen
   - credits
   - handles
