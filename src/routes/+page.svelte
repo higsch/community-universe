@@ -6,6 +6,7 @@
 	import BadgeUniverse from '$lib/BadgeUniverse.svelte';
 	import BadgeConfigurator from '$lib/BadgeConfigurator.svelte';
 	import PersonalityFlow from '$lib/PersonalityFlow.svelte';
+	import Footer from '$lib/Footer.svelte';
 
 	export let data;
 
@@ -44,6 +45,9 @@
 		/>
 		{/each}
 	</div>
+
+	<Footer />
+
 	<Modal bind:isOpen={modalOpen}>
 		<span slot="header">Create your own star</span>
 		<BadgeConfigurator
