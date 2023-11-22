@@ -12,6 +12,7 @@
 	on:click={() => (isOpen = !isOpen)}
 	style:top={y}
 	style:left={x}
+  style:--small-dimension="{70 + (Math.random() - 0.5) * 0}px"
   style:--dimension={dimension}
   class:is-open={isOpen}
 >
@@ -34,8 +35,8 @@
 	}
   
   figure {
-    width: 70px;
-    height: 70px;
+    width: var(--small-dimension);
+    height: var(--small-dimension);
     margin: 0;
     border: 3px solid var(--card-background-color);
     border-radius: 50%;

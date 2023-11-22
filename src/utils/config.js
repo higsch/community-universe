@@ -356,7 +356,7 @@ export const careerImages = {
 		},
 		{
 			x: '87%',
-			y: 2019.5,
+			y: 2019.55,
 			src: 'img/jambor.png',
 			alt: 'Helena Jambor',
 		},
@@ -427,6 +427,12 @@ export const careerImages = {
 			y: 2019.4,
 			src: 'img/lambrechts_genome.png',
 			alt: 'Genome collection by Maarten Lambrechts',
+		},
+		{
+			x: '0%',
+			y: 2019.4,
+			src: 'img/sweden.png',
+			alt: 'Flag of Sweden',
 		},
 	],
 };
