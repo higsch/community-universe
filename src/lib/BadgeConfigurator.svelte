@@ -83,7 +83,6 @@
 		use:enhance={() => {
 			return async () => {
 				dispatch('sent');
-				localStorage.setItem('serendipitytoviz-ba', 'true');
 				invalidateAll();
 			};
 		}}

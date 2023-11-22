@@ -47,6 +47,10 @@
 		padding: 1rem;
 	}
 
+	h3 {
+		text-align: center;
+	}
+
 	.image-credits {
 		text-align: center;
 	}

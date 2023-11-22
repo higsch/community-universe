@@ -76,7 +76,7 @@
 				class:transition={!isAlenkaOrMatthias}
 				style:top="{y}px"
 				style:left="{x}px"
-				style:z-index={isAlenkaOrMatthias ? 100 : 200}
+				style:z-index={isAlenkaOrMatthias ? 100 : (isGlowing ? 300 : 200)}
 			>
 				<Badge
 					data={data}
