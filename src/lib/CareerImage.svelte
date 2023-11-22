@@ -32,14 +32,19 @@
     transform: translate(-50%, -50%);
     cursor: pointer;
 	}
-
+  
   figure {
     width: 70px;
     height: 70px;
+    margin: 0;
     border: 3px solid var(--card-background-color);
     border-radius: 50%;
     background: white;
     transition: all 0.3s ease-in-out;
+  }
+  
+  figure:hover {
+    box-shadow: rgba(72, 135, 202, 0.8) 0 0 32px 32px;
   }
 
   img {
