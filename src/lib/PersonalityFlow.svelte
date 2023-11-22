@@ -5,6 +5,7 @@
 		personalityColors,
 		personalityHeight,
 		tailHeight,
+		yearRandomness
 	} from '$utils/config';
 	import { createStack, reduceLayers, createSubStack } from '$utils/stack';
 
@@ -60,12 +61,12 @@
 			.range([padding, width - padding]);
 
 		renderedData = substackedData.map((lineStack, i) => {
-			const coords = lineStack.data.map((d) =>
-				d.map((dd) => [
-					thicknessScale(dd[1]) + (Math.random() - 1) * 3,
+			const coords = lineStack.data.map((d) => {
+				return d.map((dd) => [
+					thicknessScale(dd[1]) + (Math.random() - 0.5) * (yearRandomness[dd[0]] || 3),
 					yearScale(dd[0]),
-				])
-			);
+				]);
+			});
 
 			const tailX = roleTailScale(
 				substackedData.map((d) => d.key).indexOf(lineStack.key)

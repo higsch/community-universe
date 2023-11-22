@@ -161,7 +161,7 @@ export const flowLabels = {
 			color: personalityColors.Freelancer,
 			offset: '92%',
 			showMobile: true,
-		}
+		},
 	],
 	Matthias: [
 		{
@@ -310,8 +310,13 @@ export const flowLabels = {
 			color: personalityColors.Freelancer,
 			offset: '92%',
 			showMobile: false,
-		}
-	]
+		},
+	],
+};
+
+export const yearRandomness = {
+	2019: 10,
+	2020: 10,
 };
 
 export const personalityHeight = 5000;
