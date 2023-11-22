@@ -9,3 +9,4 @@
     - impressing pieces (Maarten, Nadieh)
 - [ ] lightning star with name
 - [x] DVS badge legend
+- [ ] link to website

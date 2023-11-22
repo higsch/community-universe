@@ -1,7 +1,7 @@
 <script>
 	import { scaleLinear, scalePow } from 'd3';
 
-  import { backgroundDotColors} from '$utils/config';
+	import { backgroundDotColors } from '$utils/config';
 
 	export let width = 0;
 	export let height = 0;
@@ -46,44 +46,48 @@
 			r: radiusScale(Math.random()),
 			o: opacityScale(Math.random()),
 			b: Math.floor(blurIdScale(Math.random())),
-      f: backgroundDotColors[Math.floor(Math.random() * backgroundDotColors.length)]
+			f: backgroundDotColors[
+				Math.floor(Math.random() * backgroundDotColors.length)
+			],
 		};
 	});
 </script>
 
-<svg
-	class="dots"
-	width={width}
-	height={height}
->
-	<defs>
-		{#each blurs as { id, stdDeviation } (id)}
-			<filter id="blur-{id}">
-				<feGaussianBlur stdDeviation={stdDeviation} />
-			</filter>
-		{/each}
-	</defs>
-	<g>
-		{#each dots as { id, x, y, r, o, b, f } (id)}
-			<circle
-				cx={x}
-				cy={y}
-				r={r}
-				opacity={o}
-        fill={f}
-				fill-opacity={o}
-				filter="url(#blur-{b})"
-			/>
-		{/each}
-	</g>
-</svg>
+{#if width > 1200}
+	<svg
+		class="dots"
+		width={width}
+		height={height}
+	>
+		<defs>
+			{#each blurs as { id, stdDeviation } (id)}
+				<filter id="blur-{id}">
+					<feGaussianBlur stdDeviation={stdDeviation} />
+				</filter>
+			{/each}
+		</defs>
+		<g>
+			{#each dots as { id, x, y, r, o, b, f } (id)}
+				<circle
+					cx={x}
+					cy={y}
+					r={r}
+					opacity={o}
+					fill={f}
+					fill-opacity={o}
+					filter="url(#blur-{b})"
+				/>
+			{/each}
+		</g>
+	</svg>
+{/if}
 
 <style>
 	svg.dots {
 		position: absolute;
 		top: 0;
 		left: 0;
-    z-index: -100;
+		z-index: -100;
 	}
 
 	g {
