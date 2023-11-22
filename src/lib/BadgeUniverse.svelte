@@ -72,6 +72,7 @@
 		{#each renderedData as { x, y, r, data, isAlenkaOrMatthias }}
 			<div
 				class="badge-container"
+				class:transition={!isAlenkaOrMatthias}
 				style:top="{y}px"
 				style:left="{x}px"
 				style:z-index={isAlenkaOrMatthias ? 100 : 200}
@@ -109,6 +110,9 @@
 	.badge-container {
 		position: absolute;
 		transform: translateX(-50%) translateY(-50%);
+	}
+	
+	.badge-container.transition {
 		transition: all 0.5s ease-in-out;
 	}
 </style>
