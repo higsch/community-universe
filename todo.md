@@ -8,6 +8,7 @@
   - Matthias
     - impressing pieces (Maarten, Nadieh)
 - [ ] lightning star with name
+- [x] star tracking
 - [x] DVS badge legend
 - [ ] link to website on top?
 - [x] end screen

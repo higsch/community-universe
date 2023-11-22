@@ -110,8 +110,8 @@
 	height={height}
 >
 	<defs>
-		<filter id="glow" width="1.5" height="1.5" x="-.25" y="-.25">
-			<feGaussianBlur id="feGaussianBlur5384" in="SourceAlpha" stdDeviation="10" result="blur"/>
+		<filter id="glow" width="400%" height="400%" x="-200%" y="-200%">
+			<feGaussianBlur id="feGaussianBlur5384" in="SourceAlpha" stdDeviation={Math.min(10, badgeScale * 0.8)} result="blur"/>
 			<feColorMatrix id="feColorMatrix5386" result="bluralpha" type="matrix" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 0.800000 0 "/>
 			<feOffset id="feOffset5388" in="bluralpha" dx="0" dy="0" result="offsetBlur"/>
 			<feMerge id="feMerge5390">
