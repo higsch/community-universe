@@ -106,6 +106,11 @@
 				>
 					<stop
 						offset="0%"
+						stop-color="#213240"
+						stop-opacity="1.0"
+					/>
+					<stop
+						offset="20%"
 						stop-color="var(--background-color)"
 						stop-opacity="1.0"
 					/>
