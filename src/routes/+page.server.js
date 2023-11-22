@@ -8,17 +8,18 @@ import {
 	finalStarMatthias,
 } from '$utils/config';
 
-const addBadge = async (data = '0,0,0,0,0,0,0,0,0') => {
+const addBadge = async (data = '0,0,0,0,0,0,0,0,0', userName, uuid) => {
 	const createTable = await sql`
     CREATE TABLE IF NOT EXISTS badges (
       id SERIAL PRIMARY KEY,
-			user_id INTEGER NOT NULL,
+			user_id VARCHAR(255) NOT NULL,
+			user_name VARCHAR(255) NOT NULL,
       data VARCHAR(255) NOT NULL
     );
   `;
 
 	const badge = await sql`
-		INSERT INTO badges (user_id, data) VALUES (0, ${data});
+		INSERT INTO badges (user_id, user_name, data) VALUES (${uuid}, ${userName}, ${data});
 	`;
 
 	return {
@@ -39,8 +40,8 @@ const loadBadges = async () => {
 		});
 		badges = [
 			...badges,
-			{ id: -1, user_id: -1, data: finalStarAlenka, user_name: 'Alenka' },
-			{ id: -2, user_id: -2, data: finalStarMatthias, user_name: 'Matthias' },
+			{ id: -1, user_id: '-1', data: finalStarAlenka, user_name: 'Alenka' },
+			{ id: -2, user_id: '-1', data: finalStarMatthias, user_name: 'Matthias' },
 		];
 		return badges;
 	} catch (error) {
@@ -77,8 +78,10 @@ export const actions = {
 	addBadge: async ({ cookies, request }) => {
 		const data = await request.formData();
 		const values = data.get('values');
+		const userName = data.get('user_name') || '';
+		const uuid = data.get('user_id');
 
-		await addBadge(`${values}`);
+		await addBadge(`${values}`, userName, uuid);
 
 		return { success: true };
 	},

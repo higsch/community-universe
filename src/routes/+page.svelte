@@ -1,4 +1,7 @@
 <script>
+	import { onMount } from 'svelte';
+	import { v4 as uuidv4 } from 'uuid';
+
 	import { names, careerImages, flowLabels } from '$utils/config';
 
 	import Background from '$lib/Background.svelte';
@@ -10,7 +13,18 @@
 
 	export let data;
 
+	let uuid;
+
+	onMount(() => {
+		uuid = localStorage.getItem('serendipitytoviz-uuid');
+		if (!uuid) {
+			uuid = uuidv4();
+			localStorage.setItem('serendipitytoviz-uuid', uuid);
+		}
+	})
+
 	$: ({ badges = [], personalities = [] } = data);
+	$: badgeAdded = badges.some((d) => d.user_id === uuid);
 
 	let width, height;
 	let modalOpen = false;
@@ -23,12 +37,15 @@
 >
 	<Background width={width} height={height} />
 	
-	<button
-		on:click={() => (modalOpen = true)}
-		style:top="{universeHeight / 7}px">Add your star to the universe</button
-	>
+	{#if !badgeAdded}
+		<button
+			on:click={() => (modalOpen = true)}
+			style:top="{universeHeight / 7}px">Add your star to the universe</button
+		>
+	{/if}
 
 	<BadgeUniverse
+		uuid={uuid}
 		data={badges}
 		bind:height={universeHeight}
 	/>
@@ -51,8 +68,11 @@
 	<Modal bind:isOpen={modalOpen}>
 		<span slot="header">Create your own star</span>
 		<BadgeConfigurator
+			uuid={uuid}
 			data={[5, 5, 5, 5, 5, 5, 5, 5, 5, 5]}
-			on:sent={() => (modalOpen = false)}
+			on:sent={() => {
+				modalOpen = false;
+			}}
 		/>
 	</Modal>
 </main>

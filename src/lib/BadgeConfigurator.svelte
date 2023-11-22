@@ -69,6 +69,7 @@
 	};
 
 	export let data = Array.from({ length: inputs.length }, () => 0);
+	export let uuid;
 </script>
 
 <div class="badge-configurator">
@@ -80,8 +81,9 @@
 		action="?/addBadge"
 		method="POST"
 		use:enhance={() => {
-			return async ({ result }) => {
+			return async () => {
 				dispatch('sent');
+				localStorage.setItem('serendipitytoviz-ba', 'true');
 				invalidateAll();
 			};
 		}}
@@ -104,6 +106,17 @@
 				id={id}
 			/>
 		{/each}
+		<input
+			type="text"
+			id="user_name"
+			placeholder="Optional: Enter your name"
+		/>
+		<input
+			type="hidden"
+			id="user_id"
+			name="user_id"
+			value={uuid}
+		/>
 		<input
 			type="hidden"
 			id="values"

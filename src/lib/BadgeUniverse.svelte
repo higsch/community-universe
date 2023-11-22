@@ -6,6 +6,7 @@
 	import Badge from '$lib/Badge.svelte';
 	import CareerImage from '$lib/CareerImage.svelte';
 
+	export let uuid;
 	export let data;
 	export let height;
 
@@ -28,7 +29,7 @@
 		.exponent(3);
 
 	$: scaledData = data.map((d) => {
-		const isAlenkaOrMatthias = d.user_id < 0;
+		const isAlenkaOrMatthias = d.user_id === '-1';
 		const isAlenka = isAlenkaOrMatthias && d.user_name === 'Alenka';
 		const isMatthias = isAlenkaOrMatthias && d.user_name === 'Matthias';
 		return {
@@ -40,26 +41,25 @@
 				: xScale(Math.random()),
 			y: isAlenka || isMatthias ? height / 2 : yScale(Math.random()),
 			targetY: isAlenka || isMatthias ? height / 2 : yScale(Math.random()),
-			r:
-				(isAlenkaOrMatthias
-					? width / 7
-					: dimensionScale(Math.random())) + 10,
+			r: isAlenkaOrMatthias
+				? width / 7
+				: d.user_id === uuid
+				? width / 12
+				: dimensionScale(Math.random()) + 10,
 			isAlenkaOrMatthias,
-			fx: isAlenka
-				? width / 4
-				: isMatthias
-				? (3 * width) / 4
-				: undefined,
+			fx: isAlenka ? width / 4 : isMatthias ? (3 * width) / 4 : undefined,
 			fy: isAlenka || isMatthias ? height / 2 : undefined,
+			isGlowing: d.user_id === uuid,
 		};
 	});
 
 	$: if (scaledData && scaledData.length && width) {
-		(async () => renderedData = await layoutForce({
-			data: scaledData,
-			width,
-			height
-		}))();
+		(async () =>
+			(renderedData = await layoutForce({
+				data: scaledData,
+				width,
+				height,
+			})))();
 	}
 </script>
 
@@ -69,7 +69,7 @@
 	bind:clientHeight={height}
 >
 	{#if width}
-		{#each renderedData as { x, y, r, data, isAlenkaOrMatthias }}
+		{#each renderedData as { x, y, r, data, isAlenkaOrMatthias, isGlowing }}
 			<div
 				class="badge-container"
 				class:transition={!isAlenkaOrMatthias}
@@ -81,6 +81,7 @@
 					data={data}
 					width={r * 2}
 					spin={!isAlenkaOrMatthias}
+					isGlowing={isGlowing}
 				/>
 			</div>
 		{/each}
@@ -90,10 +91,7 @@
 		y="50%"
 		src="img/dvs_badge_legend.png"
 		alt="Career"
-		dimension="{Math.max(
-			300,
-			Math.min(675, width / 3)
-		)}px"
+		dimension="{Math.max(300, Math.min(675, width / 3))}px"
 	/>
 </div>
 
@@ -111,7 +109,7 @@
 		position: absolute;
 		transform: translateX(-50%) translateY(-50%);
 	}
-	
+
 	.badge-container.transition {
 		transition: all 0.5s ease-in-out;
 	}
