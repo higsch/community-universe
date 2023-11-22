@@ -63,7 +63,7 @@
 			</filter>
 		{/each}
 	</defs>
-	<g filter="url(#blur-main)">
+	<g>
 		{#each dots as { id, x, y, r, o, b, f } (id)}
 			<circle
 				cx={x}
