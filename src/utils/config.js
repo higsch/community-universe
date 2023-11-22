@@ -348,6 +348,7 @@ export const careerImages = {
 			src: 'img/alenka_researcher.png',
 			alt: 'Alenka as a researcher',
 		},
+		
 	],
 	Matthias: [
 		{

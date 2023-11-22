@@ -27,7 +27,7 @@
 	button {
     all: unset;
 		position: absolute;
-    z-index: 300;
+    z-index: 500;
     display: flex;
     transform: translate(-50%, -50%);
     cursor: pointer;
@@ -38,7 +38,14 @@
     height: 70px;
     border: 3px solid var(--card-background-color);
     border-radius: 50%;
+    background: white;
     transition: all 0.3s ease-in-out;
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   button.is-open figure {

@@ -4,6 +4,7 @@
 	import { layoutForce } from '$utils/force';
 
 	import Badge from '$lib/Badge.svelte';
+	import CareerImage from '$lib/CareerImage.svelte';
 
 	export let data;
 	export let height;
@@ -83,6 +84,16 @@
 			</div>
 		{/each}
 	{/if}
+	<CareerImage
+		x="50%"
+		y="50%"
+		src="img/dvs_badge_legend.png"
+		alt="Career"
+		dimension="{Math.max(
+			300,
+			Math.min(675, width / 3)
+		)}px"
+	/>
 </div>
 
 <style>
