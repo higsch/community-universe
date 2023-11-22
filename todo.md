@@ -1,7 +1,7 @@
 - [x] Flow labels
 - [x] Star background
 - [ ] Sweden flag image
-- [ ] Idol images
+- [x] Idol images
   - Alenka
     - first: Nadieh Bremer, Gabriela Plucinska, Helena Jambor
     - then: Angela Morelli, Moritz Stefaner, Inbal Rief, Sonja Kuijpers, Maarten Lambrechts
@@ -10,3 +10,6 @@
 - [ ] lightning star with name
 - [x] DVS badge legend
 - [ ] link to website
+- [ ] end screen
+  - credits
+  - handles

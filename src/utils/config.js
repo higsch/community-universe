@@ -348,7 +348,36 @@ export const careerImages = {
 			src: 'img/alenka_researcher.png',
 			alt: 'Alenka as a researcher',
 		},
-		
+		{
+			x: '40%',
+			y: 2019.7,
+			src: 'img/plucinska.png',
+			alt: 'Gabriela Plucinska',
+		},
+		{
+			x: '87%',
+			y: 2019.5,
+			src: 'img/jambor.png',
+			alt: 'Helena Jambor',
+		},
+		{
+			x: '20%',
+			y: 2020.2,
+			src: 'img/morelli.png',
+			alt: 'Angela Morelli',
+		},
+		{
+			x: '23%',
+			y: 2019.5,
+			src: 'img/rief.png',
+			alt: 'Inbal Rief',
+		},
+		{
+			x: '69%',
+			y: 2020,
+			src: 'img/kuijpers.png',
+			alt: 'Sonja Kuijpers',
+		},
 	],
 	Matthias: [
 		{
@@ -358,8 +387,8 @@ export const careerImages = {
 			alt: 'Matthias in the lab',
 		},
 		{
-			x: '5%',
-			y: 2019.5,
+			x: '63%',
+			y: 2020.1,
 			src: 'img/matthias_pi.png',
 			alt: 'Matthias as a PI',
 		},
@@ -374,6 +403,30 @@ export const careerImages = {
 			y: 2021.9,
 			src: 'img/matthias_journalist.png',
 			alt: 'Matthias as a journalist',
+		},
+		{
+			x: '12%',
+			y: 2020,
+			src: 'img/stefaner.png',
+			alt: 'Moritz Stefaner',
+		},
+		{
+			x: '10%',
+			y: 2019.7,
+			src: 'img/lambrechts.png',
+			alt: 'Maarten Lambrechts',
+		},
+		{
+			x: '3%',
+			y: 2019.2,
+			src: 'img/bremer.png',
+			alt: 'Nadieh Bremer',
+		},
+		{
+			x: '53%',
+			y: 2019.4,
+			src: 'img/lambrechts_genome.png',
+			alt: 'Genome collection by Maarten Lambrechts',
 		},
 	],
 };

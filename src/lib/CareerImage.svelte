@@ -53,6 +53,10 @@
     margin-right: auto;
   }
 
+  button.is-open {
+    z-index: 1000;
+  }
+
   button.is-open figure {
     width: var(--dimension);
     height: var(--dimension);
