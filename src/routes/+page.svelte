@@ -10,6 +10,7 @@
 	import BadgeConfigurator from '$lib/BadgeConfigurator.svelte';
 	import PersonalityFlow from '$lib/PersonalityFlow.svelte';
 	import Footer from '$lib/Footer.svelte';
+	import Badge from '$lib/Badge.svelte';
 
 	export let data;
 
@@ -47,6 +48,7 @@
 	<BadgeUniverse
 		uuid={uuid}
 		data={badges}
+		showLegend={!badgeAdded}
 		bind:height={universeHeight}
 	/>
 

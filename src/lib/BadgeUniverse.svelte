@@ -9,6 +9,7 @@
 	export let uuid;
 	export let data;
 	export let height;
+	export let showLegend = false;
 
 	const padding = 20;
 
@@ -86,13 +87,15 @@
 			</div>
 		{/each}
 	{/if}
-	<CareerImage
-		x="50%"
-		y="50%"
-		src="img/dvs_badge_legend.png"
-		alt="Career"
-		dimension="{Math.max(300, Math.min(675, width / 3))}px"
-	/>
+	{#if showLegend}
+		<CareerImage
+			x="50%"
+			y="50%"
+			src="img/dvs_badge_legend.png"
+			alt="Career"
+			dimension="{Math.max(300, Math.min(675, width / 3))}px"
+		/>
+	{/if}
 </div>
 
 <style>

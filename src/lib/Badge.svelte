@@ -110,15 +110,43 @@
 	height={height}
 >
 	<defs>
-		<filter id="glow" width="400%" height="400%" x="-200%" y="-200%">
-			<feGaussianBlur id="feGaussianBlur5384" in="SourceAlpha" stdDeviation={Math.min(10, badgeScale * 0.8)} result="blur"/>
-			<feColorMatrix id="feColorMatrix5386" result="bluralpha" type="matrix" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 0.800000 0 "/>
-			<feOffset id="feOffset5388" in="bluralpha" dx="0" dy="0" result="offsetBlur"/>
+		<filter
+			id="glow"
+			width="400%"
+			height="400%"
+			x="-200%"
+			y="-200%"
+		>
+			<feGaussianBlur
+				id="feGaussianBlur5384"
+				in="SourceAlpha"
+				stdDeviation={Math.min(10, 0.9 * badgeScale / window.devicePixelRatio)}
+				result="blur"
+			/>
+			<feColorMatrix
+				id="feColorMatrix5386"
+				result="bluralpha"
+				type="matrix"
+				values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 0.800000 0 "
+			/>
+			<feOffset
+				id="feOffset5388"
+				in="bluralpha"
+				dx="0"
+				dy="0"
+				result="offsetBlur"
+			/>
 			<feMerge id="feMerge5390">
-					<feMergeNode id="feMergeNode5392" in="offsetBlur"/>
-					<feMergeNode id="feMergeNode5394" in="SourceGraphic"/>
+				<feMergeNode
+					id="feMergeNode5392"
+					in="offsetBlur"
+				/>
+				<feMergeNode
+					id="feMergeNode5394"
+					in="SourceGraphic"
+				/>
 			</feMerge>
-	</filter>
+		</filter>
 	</defs>
 	<g
 		transform="translate({width / 2} {height / 2})"
