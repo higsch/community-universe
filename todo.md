@@ -7,7 +7,7 @@
     - then: Angela Morelli, Moritz Stefaner, Inbal Rief, Sonja Kuijpers, Maarten Lambrechts
   - Matthias
     - impressing pieces (Maarten, Nadieh)
-- [ ] lightning star with name
+- [x] lightning star with name
 - [x] star tracking
 - [x] DVS badge legend
 - [ ] link to website on top?

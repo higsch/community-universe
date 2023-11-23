@@ -38,15 +38,15 @@
 			x: isAlenka
 				? width / 4
 				: isMatthias
-				? (3 * width) / 4
-				: xScale(Math.random()),
+				  ? (3 * width) / 4
+				  : xScale(Math.random()),
 			y: isAlenka || isMatthias ? height / 2 : yScale(Math.random()),
 			targetY: isAlenka || isMatthias ? height / 2 : yScale(Math.random()),
 			r: isAlenkaOrMatthias
 				? width / 7
 				: d.user_id === uuid
-				? width / 12
-				: dimensionScale(Math.random()) + 10,
+				  ? width / 12
+				  : dimensionScale(Math.random()) + 10,
 			isAlenkaOrMatthias,
 			fx: isAlenka ? width / 4 : isMatthias ? (3 * width) / 4 : undefined,
 			fy: isAlenka || isMatthias ? height / 2 : undefined,
@@ -77,7 +77,7 @@
 				class:transition={!isAlenkaOrMatthias}
 				style:top="{y}px"
 				style:left="{x}px"
-				style:z-index={isAlenkaOrMatthias ? 100 : (isGlowing ? 300 : 200)}
+				style:z-index={isAlenkaOrMatthias ? 100 : isGlowing ? 300 : 200}
 			>
 				<Badge
 					data={data}
@@ -113,6 +113,10 @@
 	.badge-container {
 		position: absolute;
 		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.badge-container:hover {
+		z-index: 300 !important;
 	}
 
 	.badge-container.transition {
