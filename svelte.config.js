@@ -6,9 +6,11 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
-      $utils: "src/utils",
-    },
-		csrf: { checkOrigin: false }, //TODO: remove
+			$utils: 'src/utils',
+		},
+		csrf: {
+			checkOrigin: process.env.NODE_ENV === 'development' ? false : true,
+		},
 	},
 	preprocess: vitePreprocess(),
 };

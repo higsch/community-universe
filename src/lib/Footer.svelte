@@ -1,9 +1,10 @@
 <div class="footer">
 	<h2>
-		Embracing Serendipity: From Biochemistry to Data Visualization — Two Unique Journeys Unite
+		Embracing Serendipity: From Biochemistry to Data Visualization — Two Unique
+		Journeys Unite
 	</h2>
-	<h3>
-		by Alenka Guček and Matthias Stahl</h3>
+	<h3>by Alenka Guček and Matthias Stahl</h3>
+	<h5>info+, Edinburgh, 24th November 2023</h5>
 	<div class="image-credits">
 		<p>
 			The code of this website can be found <a
@@ -14,7 +15,9 @@
 		<p>
 			The DVS badge legend is taken from <a
 				href="https://www.datavisualizationsociety.org/dvs-badge">here</a
-			>.
+			>. Thanks to
+			<a href="https://observablehq.com/@osserman">Stephen Osserman</a> who coded
+			the SVG badge generator.
 		</p>
 		<p>
 			Other image credits: <a
@@ -51,15 +54,19 @@
 		padding: 1rem;
 	}
 
-	h2, h3 {
+	h2,
+	h3,
+	h5 {
 		text-align: center;
 	}
 
 	.image-credits {
+		margin-top: 3rem;
 		text-align: center;
 	}
 
 	.image-credits p {
 		font-size: 0.8rem;
+		color: var(--code-color);
 	}
 </style>

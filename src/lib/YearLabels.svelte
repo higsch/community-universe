@@ -30,6 +30,7 @@
 	span {
 		position: absolute;
 		font-size: 0.8rem;
+		color: var(--code-color);
 		transform: translateX(-50%) translateY(-50%);
 		text-shadow: 0 0 5px var(--background-color),
 			0 0 5px var(--background-color), 0 0 5px var(--background-color),
