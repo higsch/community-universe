@@ -102,8 +102,4 @@ export const actions = {
 			return { success: true };
 		}
 	},
-	loadBadges: async () => {
-		const badges = await loadBadges();
-		return { badges };
-	},
 };
