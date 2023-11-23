@@ -1,5 +1,9 @@
 <div class="footer">
-	<h3>SerendipityToViz.com by Alenka Guček and Matthias Stahl</h3>
+	<h2>
+		Embracing Serendipity: From Biochemistry to Data Visualization—Two Unique Journeys Unite
+	</h2>
+	<h3>
+		by Alenka Guček and Matthias Stahl</h3>
 	<div class="image-credits">
 		<p>
 			The code of this website can be found <a

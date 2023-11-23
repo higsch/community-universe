@@ -16,3 +16,7 @@
 - [x] end screen
   - credits
   - handles
+
+
+- start and end: why are we doing this
+- lab: ... and we were not aware that there were already grains of creativity at the bottom of our hearts
