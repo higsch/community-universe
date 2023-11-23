@@ -35,13 +35,10 @@
 	$: badgeAdded = badges.some((d) => d.user_id === uuid);
 
 	$: if (autoUpdate) {
-		console.log('auto update');
 		interval = setInterval(() => {
 			invalidateAll();
-			console.log('invalidate');
 		}, 1000 * 10);
 	} else {
-		console.log('no auto update');
 		clearInterval(interval);
 	}
 
