@@ -28,7 +28,7 @@
 	$: badgeAdded = badges.some((d) => d.user_id === uuid);
 
 	let width, height;
-	let modalOpen = true;
+	let modalOpen = false;
 	let universeHeight;
 </script>
 

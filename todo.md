@@ -9,8 +9,10 @@
     - impressing pieces (Maarten, Nadieh)
 - [x] lightning star with name
 - [x] star tracking
+- [ ] form validation
+- [ ] canvas?
 - [x] DVS badge legend
-- [ ] link to website on top?
+- [x] link to website on top?
 - [x] end screen
   - credits
   - handles

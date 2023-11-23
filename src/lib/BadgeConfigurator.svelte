@@ -13,41 +13,41 @@
 		{
 			id: 'data-collection',
 			label:
-				'Data collection - Scraping or obtaining data that is not provided in an easy format',
+				'Data: Collection - Scraping or obtaining data that is not provided in an easy format',
 		},
 		{
 			id: 'data-cleaning',
-			label: 'Data cleaning - Tidying data to make it easier to work with',
+			label: 'Data: Cleaning - Tidying data to make it easier to work with',
 		},
 		{
 			id: 'data-analysis',
-			label: 'Data analysis - Modeling data to discover new information',
+			label: 'Data: Analysis - Modeling data to discover new information',
 		},
 		{
 			id: 'visualization-building',
 			label:
-				'Visualization building - Creating data visualizations using code or tools',
+				'Visualization: Building - Creating data visualizations using code or tools',
 		},
 		{
 			id: 'visualization-design',
 			label:
-				'Visualization design - Evaluating needs, and creating visual concepts',
+				'Visualization: Design - Evaluating needs, and creating visual concepts',
 		},
 		{
 			id: 'visualization-storytelling',
-			label: 'Visualization storytelling - Creating compelling narratives',
+			label: 'Visualization: Storytelling - Creating compelling narratives',
 		},
 		{
 			id: 'society-management',
-			label: 'Society project management - Planning and organizing work',
+			label: 'Society: Project management - Planning and organizing work',
 		},
 		{
 			id: 'society-community',
-			label: 'Society community - Participating in events and conversation',
+			label: 'Society: Community - Participating in events and conversation',
 		},
 		{
 			id: 'society-leadership',
-			label: 'Society leadership - Influencing the direction',
+			label: 'Society: Leadership - Influencing the direction',
 		},
 	];
 
@@ -146,5 +146,9 @@
 
 	label.value-description {
 		font-size: 0.8rem;
+	}
+
+	input#user_name {
+		margin: 1rem 0;
 	}
 </style>
