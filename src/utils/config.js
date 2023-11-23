@@ -328,11 +328,11 @@ export const yearRandomness = {
 
 export const personalityHeight = 5000;
 export const tailHeight = 600;
-export const finalStarAlenka = [5, 4, 4, 5, 2, 4, 3, 4, 3];
-export const finalStarMatthias = [5, 5, 4, 5, 5, 4, 3, 4, 2];
-// data: collection, analysis, cleaning
-// visualization: design, building, storytelling
-// society: leadership, management, community
+export const finalStarAlenka = [5, 4, 4, 2, 5, 4, 3, 2, 4];
+export const finalStarMatthias = [5, 4, 5, 5, 5, 4, 2, 2, 4];
+// data: collection, cleaning, analysis
+// visualization: building, design, storytelling
+// society: community, leadership, management
 
 export const careerImages = {
 	Alenka: [
@@ -458,76 +458,3 @@ export const backgroundDotColors = [
 	'#FBDD97',
 	'#FDF6B5',
 ];
-
-// export const personalityColors = {
-//   Analyst: '#b3e2cd',
-//   Leadership: '#fdcdac',
-//   Designer: '#cbd5e8',
-//   'Developer/Engineer': '#f4cae4',
-//   Scientist: '#e6f5c9',
-//   Journalist: '#fff2ae',
-//   Freelancer: '#f1e2cc',
-// };
-// export const personalityColors = {
-//   Analyst: '#D59780',
-//   Leadership: '#DB8EBD',
-//   Designer: '#A69FDC',
-//   'Developer/Engineer': '#43B4C6',
-//   Scientist: '#55B88D',
-//   Journalist: '#A5AB5F',
-//   Freelancer: '#D59780',
-// };
-// export const personalityColors = {
-//   Analyst: '#E24C80',
-//   Leadership: '#EB6E75',
-//   Designer: '#F28D6F',
-//   'Developer/Engineer': '#F6A972',
-//   Scientist: '#F9C480',
-//   Journalist: '#FBDD97',
-//   Freelancer: '#FDF6B5',
-// };
-// export const personalityColors = {
-//   Analyst: '#8B0069',
-//   Leadership: '#A23D47',
-//   Designer: '#A96C00',
-//   'Developer/Engineer': '#9A9800',
-//   Scientist: '#75C165',
-//   Journalist: '#50E2BB',
-//   Freelancer: '#B0F4FA',
-// };
-// export const personalityColors = {
-//   Analyst: '#F7DC05',
-//   Leadership: '#3D98D3',
-//   Designer: '#EC0B88',
-//   'Developer/Engineer': '#5E35B1',
-//   Scientist: '#F9791E',
-//   Journalist: '#3DD378',
-//   Freelancer: '#C6C6C6',
-// };
-// export const personalityColors = {
-//   Analyst: '#a79fdc',
-//   Leadership: '#8bd0eb',
-//   Designer: '#4dcea5',
-//   'Developer/Engineer': '#869764',
-//   Scientist: '#65d04b',
-//   Journalist: '#fd5917',
-//   Freelancer: '#f6bb86',
-// };
-// export const personalityColors = {
-//   Analyst: '#a79fdc',
-//   Leadership: '#7afaba',
-//   Designer: '#2480a1',
-//   'Developer/Engineer': '#82d1f4',
-//   Scientist: '#bc47b4',
-//   Journalist: '#e6f8c0',
-//   Freelancer: '#1d8a20',
-// };
-// export const personalityColors = {
-//   Analyst: '#ABB065',
-//   Leadership: '#BFAA67',
-//   Designer: '#CFA373',
-//   'Developer/Engineer': '#DB9D85',
-//   Scientist: '#E2979A',
-//   Journalist: '#E494AF',
-//   Freelancer: '#E093C3',
-// };

@@ -4,9 +4,9 @@
 	import { v4 as uuidv4 } from 'uuid';
 
 	export let data = [5, 5, 4, 5, 5, 4, 2, 4, 2];
-	// data: collection, analysis, cleaning
-	// visualization: design, building, storytelling
-	// society: leadership, management, community
+	// data: collection, cleaning, analysis
+	// visualization: building, design, storytelling
+	// society: community, leadership, management
 	export let name;
 	export let width = 250;
 	export let spin = false;
@@ -45,7 +45,7 @@
 				vertices: radarVertices(
 					data.slice(3, 6),
 					badgeScale,
-					(2 * Math.PI * 1) / 9 - Math.PI / 2
+					(2 * Math.PI * 1) / 9 - Math.PI / 2,
 				),
 			},
 		],
@@ -56,7 +56,7 @@
 				vertices: radarVertices(
 					data.slice(6, 9),
 					badgeScale,
-					(2 * Math.PI * 2) / 9 - Math.PI / 2
+					(2 * Math.PI * 2) / 9 - Math.PI / 2,
 				),
 			},
 		],
@@ -69,7 +69,7 @@
 				fill: '#1E6E0F',
 				vertices: intersect(
 					turfPoly(badgePaths.get('data').vertices),
-					turfPoly(badgePaths.get('visualization').vertices)
+					turfPoly(badgePaths.get('visualization').vertices),
 				).geometry.coordinates[0],
 			},
 		],
@@ -79,7 +79,7 @@
 				fill: '#153252',
 				vertices: intersect(
 					turfPoly(badgePaths.get('data').vertices),
-					turfPoly(badgePaths.get('society').vertices)
+					turfPoly(badgePaths.get('society').vertices),
 				).geometry.coordinates[0],
 			},
 		],
@@ -89,7 +89,7 @@
 				fill: '#773110',
 				vertices: intersect(
 					turfPoly(badgePaths.get('society').vertices),
-					turfPoly(badgePaths.get('visualization').vertices)
+					turfPoly(badgePaths.get('visualization').vertices),
 				).geometry.coordinates[0],
 			},
 		],
@@ -100,9 +100,9 @@
 				vertices: intersect(
 					intersect(
 						turfPoly(badgePaths.get('data').vertices),
-						turfPoly(badgePaths.get('visualization').vertices)
+						turfPoly(badgePaths.get('visualization').vertices),
 					),
-					turfPoly(badgePaths.get('society').vertices)
+					turfPoly(badgePaths.get('society').vertices),
 				).geometry.coordinates[0],
 			},
 		],
@@ -128,7 +128,7 @@
 				in="SourceAlpha"
 				stdDeviation={Math.min(
 					10,
-					(0.9 * badgeScale) / window.devicePixelRatio
+					(0.9 * badgeScale) / window.devicePixelRatio,
 				)}
 				result="blur"
 			/>
@@ -214,7 +214,7 @@
 	}
 
 	svg:hover g.label {
-		opacity: 1.0;
+		opacity: 1;
 	}
 
 	.spin {

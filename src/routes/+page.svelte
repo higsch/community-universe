@@ -57,7 +57,7 @@
 	/>
 
 	{#if browser && window.location.href === 'http://localhost:3000/'}
-		<h2>SerendipityToViz.com</h2>
+		<h1>SerendipityToViz.com</h1>
 	{/if}
 
 	{#if !badgeAdded}
@@ -67,20 +67,25 @@
 		>
 	{/if}
 
-	<div class="auto-update" style:top="{universeHeight}px">
-		<label for="check-auto-update">Auto update</label>
-		<input
-			id="check-auto-update"
-			class="check-auto-update"
-			type="checkbox"
-			bind:checked={autoUpdate}
-		/>
-	</div>
+	{#if browser && window.location.href === 'http://localhost:3000/'}
+		<div
+			class="auto-update"
+			style:top="{universeHeight}px"
+		>
+			<label for="check-auto-update">Auto update</label>
+			<input
+				id="check-auto-update"
+				class="check-auto-update"
+				type="checkbox"
+				bind:checked={autoUpdate}
+			/>
+		</div>
+	{/if}
 
 	<BadgeUniverse
 		uuid={uuid}
 		data={badges}
-		showLegend={!badgeAdded}
+		showLegend
 		bind:height={universeHeight}
 	/>
 
@@ -117,7 +122,7 @@
 		width: 100%;
 	}
 
-	h2 {
+	h1 {
 		position: absolute;
 		top: 16px;
 		left: 50%;
