@@ -1,6 +1,7 @@
 import { createPool } from '@vercel/postgres';
 import { sql } from '@vercel/postgres';
 import { csvParse, autoType } from 'd3';
+import { z } from 'zod';
 
 import {
 	personalityPath,
@@ -8,7 +9,13 @@ import {
 	finalStarMatthias,
 } from '$utils/config';
 
-const addBadge = async (data = '0,0,0,0,0,0,0,0,0', userName, uuid) => {
+const UserSchema = z.object({
+	data: z.string(),
+	user_name: z.string(),
+	user_id: z.string(),
+});
+
+const addBadge = async ({data = '0,0,0,0,0,0,0,0,0', user_name, user_id}) => {
 	const createTable = await sql`
     CREATE TABLE IF NOT EXISTS badges (
       id SERIAL PRIMARY KEY,
@@ -19,7 +26,7 @@ const addBadge = async (data = '0,0,0,0,0,0,0,0,0', userName, uuid) => {
   `;
 
 	const badge = await sql`
-		INSERT INTO badges (user_id, user_name, data) VALUES (${uuid}, ${userName}, ${data});
+		INSERT INTO badges (user_id, user_name, data) VALUES (${user_id}, ${user_name}, ${data});
 	`;
 
 	return {
@@ -77,13 +84,26 @@ export const load = async ({ fetch }) => {
 export const actions = {
 	addBadge: async ({ cookies, request }) => {
 		const data = await request.formData();
-		console.log(data)
-		const values = data.get('values');
-		const userName = data.get('user_name') || '';
-		const uuid = data.get('user_id');
+		const values = String(data.get('values'));
+		const userName = String(data.get('user_name')) || '';
+		const uuid = String(data.get('user_id'));
 
-		await addBadge(`${values}`, userName, uuid);
+		const badge = {
+			data: values,
+			user_name: userName,
+			user_id: uuid,
+		};
 
-		return { success: true };
+		const safeParse = UserSchema.safeParse(badge);
+
+		if (safeParse.success) {
+			await addBadge(safeParse.data);
+
+			return { success: true };
+		}
+	},
+	loadBadges: async () => {
+		const badges = await loadBadges();
+		return { badges };
 	},
 };

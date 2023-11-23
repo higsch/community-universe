@@ -13,6 +13,7 @@
 - [ ] canvas?
 - [x] DVS badge legend
 - [x] link to website on top?
+- [ ] refresh periodically badges
 - [x] end screen
   - credits
   - handles

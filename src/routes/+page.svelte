@@ -1,5 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
+	import { invalidateAll } from '$app/navigation';
+
 	import { v4 as uuidv4 } from 'uuid';
 
 	import { browser } from '$app/environment';
@@ -22,6 +24,12 @@
 			uuid = uuidv4();
 			localStorage.setItem('serendipitytoviz-uuid', uuid);
 		}
+
+		const interval = setInterval(() => {
+      invalidateAll();
+    }, 1000 * 10);
+
+    return () => clearInterval(interval);
 	});
 
 	$: ({ badges = [], personalities = [] } = data);
