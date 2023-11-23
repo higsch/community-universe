@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { v4 as uuidv4 } from 'uuid';
 
+	import { browser } from '$app/environment';
 	import { names, careerImages, flowLabels } from '$utils/config';
 
 	import Background from '$lib/Background.svelte';
@@ -27,10 +28,8 @@
 	$: badgeAdded = badges.some((d) => d.user_id === uuid);
 
 	let width, height;
-	let modalOpen = false;
+	let modalOpen = true;
 	let universeHeight;
-
-	console.log(window.location);
 </script>
 
 <main
@@ -42,7 +41,7 @@
 		height={height}
 	/>
 
-	{#if window.location.href === 'http://localhost:3000/'}
+	{#if browser && window.location.href === 'http://localhost:3000/'}
 		<h2>SerendipityToViz.com</h2>
 	{/if}
 
@@ -79,7 +78,7 @@
 		<span slot="header">Create your own star</span>
 		<BadgeConfigurator
 			uuid={uuid}
-			data={[5, 5, 5, 5, 5, 5, 5, 5, 5, 5]}
+			data={Array.from({ length: 9 }, () => 3)}
 			on:sent={() => {
 				modalOpen = false;
 			}}
