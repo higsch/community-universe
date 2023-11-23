@@ -10,7 +10,6 @@
 	import BadgeConfigurator from '$lib/BadgeConfigurator.svelte';
 	import PersonalityFlow from '$lib/PersonalityFlow.svelte';
 	import Footer from '$lib/Footer.svelte';
-	import Badge from '$lib/Badge.svelte';
 
 	export let data;
 
@@ -22,7 +21,7 @@
 			uuid = uuidv4();
 			localStorage.setItem('serendipitytoviz-uuid', uuid);
 		}
-	})
+	});
 
 	$: ({ badges = [], personalities = [] } = data);
 	$: badgeAdded = badges.some((d) => d.user_id === uuid);
@@ -30,14 +29,23 @@
 	let width, height;
 	let modalOpen = false;
 	let universeHeight;
+
+	console.log(window.location);
 </script>
 
 <main
 	bind:clientWidth={width}
 	bind:clientHeight={height}
 >
-	<Background width={width} height={height} />
-	
+	<Background
+		width={width}
+		height={height}
+	/>
+
+	{#if window.location.href === 'http://localhost:3000/'}
+		<h2>SerendipityToViz.com</h2>
+	{/if}
+
 	{#if !badgeAdded}
 		<button
 			on:click={() => (modalOpen = true)}
@@ -54,14 +62,14 @@
 
 	<div class="personality-flows">
 		{#each names as name, i}
-		<PersonalityFlow
-			name={name}
-			data={personalities.filter((d) => d.name === name)}
-			careerImages={careerImages[name]}
-			universeHeight={universeHeight}
-			yearLabels={i === 0}
-			flowLabels={flowLabels[name]}
-		/>
+			<PersonalityFlow
+				name={name}
+				data={personalities.filter((d) => d.name === name)}
+				careerImages={careerImages[name]}
+				universeHeight={universeHeight}
+				yearLabels={i === 0}
+				flowLabels={flowLabels[name]}
+			/>
 		{/each}
 	</div>
 
@@ -83,6 +91,19 @@
 	main {
 		position: relative;
 		width: 100%;
+	}
+
+	h2 {
+		position: absolute;
+		top: 16px;
+		left: 50%;
+		z-index: 500;
+		margin: 0;
+		padding: 1rem;
+		transform: translateX(-50%);
+		/* background: var(--background-color); */
+		border: none;
+		border-radius: 5px;
 	}
 
 	button {
