@@ -51,6 +51,7 @@
 			fx: isAlenka ? width / 4 : isMatthias ? (3 * width) / 4 : undefined,
 			fy: isAlenka || isMatthias ? height / 2 : undefined,
 			isGlowing: d.user_id === uuid,
+			name: d.user_name,
 		};
 	});
 
@@ -70,7 +71,7 @@
 	bind:clientHeight={height}
 >
 	{#if width}
-		{#each renderedData as { x, y, r, data, isAlenkaOrMatthias, isGlowing }}
+		{#each renderedData as { x, y, r, data, name, isAlenkaOrMatthias, isGlowing }}
 			<div
 				class="badge-container"
 				class:transition={!isAlenkaOrMatthias}
@@ -80,6 +81,7 @@
 			>
 				<Badge
 					data={data}
+					name={name}
 					width={r * 2}
 					spin={!isAlenkaOrMatthias}
 					isGlowing={isGlowing}

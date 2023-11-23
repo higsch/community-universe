@@ -1,14 +1,18 @@
 <script>
 	import { polygon, intersect } from '@turf/turf';
 	import { line } from 'd3';
+	import { v4 as uuidv4 } from 'uuid';
 
 	export let data = [5, 5, 4, 5, 5, 4, 2, 4, 2];
 	// data: collection, analysis, cleaning
 	// visualization: design, building, storytelling
 	// society: leadership, management, community
+	export let name;
 	export let width = 250;
 	export let spin = false;
 	export let isGlowing = false;
+
+	const id = uuidv4();
 
 	const radarVertices = (valueArray, scale, rotateRadians = -Math.PI / 2) => {
 		const nPoints = valueArray.length;
@@ -103,11 +107,13 @@
 			},
 		],
 	]);
+
+	$: r = width / 2;
 </script>
 
 <svg
-	width={width}
-	height={height}
+	width={width + 12}
+	height={height + 12}
 >
 	<defs>
 		<filter
@@ -120,7 +126,10 @@
 			<feGaussianBlur
 				id="feGaussianBlur5384"
 				in="SourceAlpha"
-				stdDeviation={Math.min(10, 0.9 * badgeScale / window.devicePixelRatio)}
+				stdDeviation={Math.min(
+					10,
+					(0.9 * badgeScale) / window.devicePixelRatio
+				)}
 				result="blur"
 			/>
 			<feColorMatrix
@@ -149,7 +158,7 @@
 		</filter>
 	</defs>
 	<g
-		transform="translate({width / 2} {height / 2})"
+		transform="translate({6 + width / 2} {6 + height / 2})"
 		class:spin={spin && spinSwitch}
 		class:spin-reverse={spin && !spinSwitch}
 	>
@@ -160,10 +169,54 @@
 				filter={isGlowing ? 'url(#glow)' : undefined}
 			/>
 		{/each}
+		{#if name}
+			<g class="label">
+				<path
+					id="path-{id}"
+					d="M{-r} 0a{r} {r} 0 1 1 {r * 2} 0a{r} {r} 0 1 1 {-2 * r} 0"
+					fill="none"
+					stroke="white"
+				/>
+				<text
+					font-size="0.8rem"
+					dy="5px"
+					fill="var(--background-color)"
+					stroke="var(--background-color)"
+					stroke-width="0.3rem"
+					stroke-opacity="1.0"
+					text-anchor="middle"
+				>
+					<textPath
+						href="#path-{id}"
+						startOffset="25%">{name}</textPath
+					>
+				</text>
+				<text
+					font-size="0.8rem"
+					dy="5px"
+					fill="var(--h1-color)"
+					text-anchor="middle"
+				>
+					<textPath
+						href="#path-{id}"
+						startOffset="25%">{name}</textPath
+					>
+				</text>
+			</g>
+		{/if}
 	</g>
 </svg>
 
 <style>
+	g.label {
+		opacity: 0;
+		transition: opacity 0.2s linear;
+	}
+
+	svg:hover g.label {
+		opacity: 1.0;
+	}
+
 	.spin {
 		transform-origin: center center;
 		animation: spin 180s linear infinite;

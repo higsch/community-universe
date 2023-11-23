@@ -108,6 +108,7 @@
 		<input
 			type="text"
 			id="user_name"
+			name="user_name"
 			placeholder="Optional: Enter your name"
 		/>
 		<input

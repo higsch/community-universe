@@ -77,6 +77,7 @@ export const load = async ({ fetch }) => {
 export const actions = {
 	addBadge: async ({ cookies, request }) => {
 		const data = await request.formData();
+		console.log(data)
 		const values = data.get('values');
 		const userName = data.get('user_name') || '';
 		const uuid = data.get('user_id');
