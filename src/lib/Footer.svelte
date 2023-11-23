@@ -1,6 +1,6 @@
 <div class="footer">
 	<h2>
-		Embracing Serendipity: From Biochemistry to Data Visualization—Two Unique Journeys Unite
+		Embracing Serendipity: From Biochemistry to Data Visualization — Two Unique Journeys Unite
 	</h2>
 	<h3>
 		by Alenka Guček and Matthias Stahl</h3>
@@ -51,7 +51,7 @@
 		padding: 1rem;
 	}
 
-	h3 {
+	h2, h3 {
 		text-align: center;
 	}
 

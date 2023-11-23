@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { invalidateAll } from '$app/navigation';
 
 	import { v4 as uuidv4 } from 'uuid';
@@ -17,6 +17,11 @@
 	export let data;
 
 	let uuid;
+	let interval;
+	let width, height;
+	let modalOpen = false;
+	let universeHeight;
+	let autoUpdate = false;
 
 	onMount(() => {
 		uuid = localStorage.getItem('serendipitytoviz-uuid');
@@ -24,20 +29,25 @@
 			uuid = uuidv4();
 			localStorage.setItem('serendipitytoviz-uuid', uuid);
 		}
-
-		const interval = setInterval(() => {
-      invalidateAll();
-    }, 1000 * 10);
-
-    return () => clearInterval(interval);
 	});
 
 	$: ({ badges = [], personalities = [] } = data);
 	$: badgeAdded = badges.some((d) => d.user_id === uuid);
 
-	let width, height;
-	let modalOpen = false;
-	let universeHeight;
+	$: if (autoUpdate) {
+		console.log('auto update');
+		interval = setInterval(() => {
+			invalidateAll();
+			console.log('invalidate');
+		}, 1000 * 10);
+	} else {
+		console.log('no auto update');
+		clearInterval(interval);
+	}
+
+	onDestroy(() => {
+		clearInterval(interval);
+	});
 </script>
 
 <main
@@ -59,6 +69,16 @@
 			style:top="{universeHeight / 7}px">Add your star to the universe</button
 		>
 	{/if}
+
+	<div class="auto-update" style:top="{universeHeight}px">
+		<label for="check-auto-update">Auto update</label>
+		<input
+			id="check-auto-update"
+			class="check-auto-update"
+			type="checkbox"
+			bind:checked={autoUpdate}
+		/>
+	</div>
 
 	<BadgeUniverse
 		uuid={uuid}
@@ -121,6 +141,18 @@
 		max-width: 400px;
 		z-index: 300;
 		transform: translateX(-50%);
+	}
+
+	.auto-update {
+		position: absolute;
+		left: -32px;
+		z-index: 500;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.8rem;
+		color: var(--blockquote-footer-color);
+		transform: rotate(-90deg);
 	}
 
 	.personality-flows {

@@ -5,13 +5,15 @@
 		personalityColors,
 		personalityHeight,
 		tailHeight,
-		yearRandomness
+		yearRandomness,
 	} from '$utils/config';
 	import { createStack, reduceLayers, createSubStack } from '$utils/stack';
 
 	import FlowLabels from '$lib/FlowLabels.svelte';
 	import YearLabels from '$lib/YearLabels.svelte';
 	import CareerImage from '$lib/CareerImage.svelte';
+	import Canvas from '$lib/Canvas.svelte';
+	import Flow from '$lib/Flow.svelte';
 
 	export let name;
 	export let data;
@@ -52,7 +54,7 @@
 
 		thicknessScale = scaleLinear()
 			.domain(
-				extent(stackedData.map((d) => d.map((dd) => [dd[0], dd[1]])).flat(2))
+				extent(stackedData.map((d) => d.map((dd) => [dd[0], dd[1]])).flat(2)),
 			)
 			.range([0, width * 0.95]);
 
@@ -63,13 +65,14 @@
 		renderedData = substackedData.map((lineStack, i) => {
 			const coords = lineStack.data.map((d) => {
 				return d.map((dd) => [
-					thicknessScale(dd[1]) + (Math.random() - 0.5) * (yearRandomness[dd[0]] || 3),
+					thicknessScale(dd[1]) +
+						(Math.random() - 0.5) * (yearRandomness[dd[0]] || 3),
 					yearScale(dd[0]),
 				]);
 			});
 
 			const tailX = roleTailScale(
-				substackedData.map((d) => d.key).indexOf(lineStack.key)
+				substackedData.map((d) => d.key).indexOf(lineStack.key),
 			);
 			const extendedCoords = coords.map((d) => [
 				[tailX, personalityHeight + universeHeight + tailHeight],
@@ -138,27 +141,18 @@
 			</defs>
 
 			<g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
-				{#each renderedData as { id, paths } (id)}
-					<path
-						d={paths}
-						fill="none"
-						stroke="white"
-						stroke-width={strokeWidth}
-						opacity="0.9"
-					/>
-				{/each}
 				{#each renderedData as { id, key, paths, color }}
 					{#each paths as path, i}
-						<path
-							id={i === Math.floor(paths.length / 2)
-								? `${name}-label-path-${key}`
-								: undefined}
-							d={path}
-							fill="none"
-							stroke={color}
-							stroke-width={strokeWidth}
-							opacity="0.7"
-						/>
+						{#if i === Math.floor(paths.length / 2)}
+							<path
+								id="{name}-label-path-{key}"
+								d={path}
+								fill="none"
+								stroke="none"
+								stroke-width={strokeWidth}
+								opacity="0"
+							/>
+						{/if}
 					{/each}
 				{/each}
 			</g>
@@ -178,6 +172,30 @@
 			/>
 		</svg>
 
+		<Canvas
+			width={width}
+			height={height}
+		>
+			{#each renderedData as { id, paths } (id)}
+				<Flow
+					data={paths}
+					color="white"
+					strokeWidth={strokeWidth}
+					opacity="0.9"
+				/>
+			{/each}
+			{#each renderedData as { id, paths, color } (id)}
+				{#each paths as path, i}
+					<Flow
+						data={path}
+						color={color}
+						strokeWidth={strokeWidth}
+						opacity="0.7"
+					/>
+				{/each}
+			{/each}
+		</Canvas>
+
 		{#if yearLabels}
 			<YearLabels scale={yearScale} />
 		{/if}
@@ -190,7 +208,7 @@
 				alt={alt}
 				dimension="{Math.max(
 					300,
-					Math.min(675, thicknessScale.range()[1] / 1.5)
+					Math.min(675, thicknessScale.range()[1] / 1.5),
 				)}px"
 			/>
 		{/each}
