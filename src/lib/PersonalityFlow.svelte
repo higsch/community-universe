@@ -140,7 +140,7 @@
 				</linearGradient>
 			</defs>
 
-			<!-- <g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
+			<g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
 				{#each renderedData as { key, paths }}
 					{#each paths.filter((_, i, arr) => i === Math.floor(arr.length / 2)) as path}
 						<path
@@ -153,9 +153,9 @@
 						/>
 					{/each}
 				{/each}
-			</g> -->
+			</g>
 
-			<g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
+			<!-- <g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
 				{#each renderedData as { id, paths } (id)}
 					<path
 						d={paths}
@@ -179,7 +179,7 @@
 						/>
 					{/each}
 				{/each}
-			</g>
+			</g> -->
 
 			<FlowLabels
 				name={name}
@@ -196,7 +196,7 @@
 			/>
 		</svg>
 
-		<!-- <Canvas
+		<Canvas
 			width={width}
 			height={height}
 			--position="absolute"
@@ -220,7 +220,7 @@
 					/>
 				{/each}
 			{/each}
-		</Canvas> -->
+		</Canvas>
 
 		{#if yearLabels}
 			<YearLabels scale={yearScale} />
