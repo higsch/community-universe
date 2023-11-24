@@ -98,7 +98,7 @@
 	style:--tailHeight="{tailHeight}px"
 >
 	{#if yearScale}
-		<!-- <svg
+		<svg
 			width={width}
 			height={height}
 		>
@@ -168,7 +168,7 @@
 				height={universeHeight}
 				fill="url('#dim-gradient')"
 			/>
-		</svg> -->
+		</svg>
 
 		<Canvas
 			width={width}
@@ -200,7 +200,7 @@
 			<YearLabels scale={yearScale} />
 		{/if}
 
-		{#each careerImages as { x, y, src, alt }}
+		<!-- {#each careerImages as { x, y, src, alt }}
 			<CareerImage
 				x={x}
 				y="{yearScale(y)}px"
@@ -211,7 +211,7 @@
 					Math.min(675, thicknessScale.range()[1] / 1.5),
 				)}px"
 			/>
-		{/each}
+		{/each} -->
 	{/if}
 </div>
 
