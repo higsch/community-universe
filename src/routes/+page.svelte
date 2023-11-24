@@ -51,14 +51,14 @@
 	bind:clientWidth={width}
 	bind:clientHeight={height}
 >
-	<!-- <Background
+	<Background
 		width={width}
 		height={height}
-	/> -->
+	/>
 
-	<!-- {#if browser && window.location.href === 'http://localhost:3000/'}
+	{#if browser && window.location.href === 'http://localhost:3000/'}
 		<h1>SerendipityToViz.com</h1>
-	{/if} -->
+	{/if}
 
 	{#if !badgeAdded}
 		<button
