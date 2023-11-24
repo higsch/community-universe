@@ -89,7 +89,7 @@
 		bind:height={universeHeight}
 	/>
 
-	<!-- <div class="personality-flows">
+	<div class="personality-flows">
 		{#each names as name, i}
 			<PersonalityFlow
 				name={name}
@@ -100,7 +100,7 @@
 				flowLabels={flowLabels[name]}
 			/>
 		{/each}
-	</div> -->
+	</div>
 
 	<Footer />
 
