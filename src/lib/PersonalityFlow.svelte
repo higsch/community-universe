@@ -172,7 +172,7 @@
 			/>
 		</svg>
 
-		<Canvas
+		<!-- <Canvas
 			width={width}
 			height={height}
 			--position="absolute"
@@ -196,7 +196,7 @@
 					/>
 				{/each}
 			{/each}
-		</Canvas>
+		</Canvas> -->
 
 		{#if yearLabels}
 			<YearLabels scale={yearScale} />
