@@ -17,8 +17,8 @@
 	const radarVertices = (valueArray, scale, rotateRadians = -Math.PI / 2) => {
 		const nPoints = valueArray.length;
 		const radarPoints = valueArray.map((d, i) => [
-			scale * (d + 1) * Math.cos(rotateRadians + (2 * Math.PI * i) / nPoints),
-			scale * (d + 1) * Math.sin(rotateRadians + (2 * Math.PI * i) / nPoints),
+			scale * (d + 0.1) * Math.cos(rotateRadians + (2 * Math.PI * i) / nPoints),
+			scale * (d + 0.1) * Math.sin(rotateRadians + (2 * Math.PI * i) / nPoints),
 		]);
 		return radarPoints;
 	};
