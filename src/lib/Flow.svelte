@@ -12,6 +12,7 @@
 	function draw(ctx) {
 		ctx.strokeStyle = color;
 		ctx.globalAlpha = opacity;
+		ctx.lineWidth = strokeWidth;
 
     const p = new Path2D(data);
 

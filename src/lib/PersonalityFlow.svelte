@@ -19,7 +19,7 @@
 	export let data;
 	export let careerImages;
 	export let universeHeight;
-	export let strokeWidth = 1.0;
+	export let strokeWidth = 1.5;
 	export let yearLabels = false;
 	export let flowLabels;
 
@@ -141,7 +141,7 @@
 			</defs>
 
 			<g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
-				{#each renderedData as { id, key, paths, color }}
+				{#each renderedData as { key, paths }}
 					{#each paths as path, i}
 						{#if i === Math.floor(paths.length / 2)}
 							<path
@@ -181,7 +181,7 @@
 					data={paths}
 					color="white"
 					strokeWidth={strokeWidth}
-					opacity="0.9"
+					opacity="0.8"
 				/>
 			{/each}
 			{#each renderedData as { id, paths, color } (id)}
