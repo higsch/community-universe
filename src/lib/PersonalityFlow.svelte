@@ -98,7 +98,7 @@
 	style:--tailHeight="{tailHeight}px"
 >
 	{#if yearScale}
-		<svg
+		<!-- <svg
 			width={width}
 			height={height}
 		>
@@ -168,7 +168,7 @@
 				height={universeHeight}
 				fill="url('#dim-gradient')"
 			/>
-		</svg>
+		</svg> -->
 
 		<Canvas
 			width={width}
