@@ -140,7 +140,7 @@
 				</linearGradient>
 			</defs>
 
-			<g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
+			<!-- <g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
 				{#each renderedData as { key, paths }}
 					{#each paths.filter((_, i, arr) => i === Math.floor(arr.length / 2)) as path}
 						<path
@@ -150,6 +150,32 @@
 							stroke="none"
 							stroke-width={strokeWidth}
 							opacity="0"
+						/>
+					{/each}
+				{/each}
+			</g> -->
+
+			<g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
+				{#each renderedData as { id, paths } (id)}
+					<path
+						d={paths}
+						fill="none"
+						stroke="white"
+						stroke-width={strokeWidth}
+						opacity="0.9"
+					/>
+				{/each}
+				{#each renderedData as { id, key, paths, color }}
+					{#each paths as path, i}
+						<path
+							id={i === Math.floor(paths.length / 2)
+								? `${name}-label-path-${key}`
+								: undefined}
+							d={path}
+							fill="none"
+							stroke={color}
+							stroke-width={strokeWidth}
+							opacity="0.7"
 						/>
 					{/each}
 				{/each}
@@ -170,13 +196,13 @@
 			/>
 		</svg>
 
-		<Canvas
+		<!-- <Canvas
 			width={width}
 			height={height}
 			--position="absolute"
 			--z-index="0"
 		>
-			{#each renderedData as { id, paths } (id)}
+			{#each renderedData as { paths }}
 				<Flow
 					data={paths}
 					color="white"
@@ -184,8 +210,8 @@
 					opacity="0.8"
 				/>
 			{/each}
-			{#each renderedData as { id, paths, color } (id)}
-				{#each paths as path, i}
+			{#each renderedData as { paths, color }}
+				{#each paths as path}
 					<Flow
 						data={path}
 						color={color}
@@ -194,13 +220,13 @@
 					/>
 				{/each}
 			{/each}
-		</Canvas>
+		</Canvas> -->
 
 		{#if yearLabels}
 			<YearLabels scale={yearScale} />
 		{/if}
 
-		<!-- {#each careerImages as { x, y, src, alt }}
+		{#each careerImages as { x, y, src, alt }}
 			<CareerImage
 				x={x}
 				y="{yearScale(y)}px"
@@ -211,7 +237,7 @@
 					Math.min(675, thicknessScale.range()[1] / 1.5),
 				)}px"
 			/>
-		{/each} -->
+		{/each}
 	{/if}
 </div>
 
