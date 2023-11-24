@@ -172,7 +172,7 @@
 			/>
 		</svg>
 
-		<!-- <Canvas
+		<Canvas
 			width={width}
 			height={height}
 			--position="absolute"
@@ -182,7 +182,7 @@
 				<Flow
 					data={paths}
 					color="white"
-					strokeWidth={strokeWidth}
+					strokeWidth={width < 600 ? 1.0 : strokeWidth}
 					opacity="0.8"
 				/>
 			{/each}
@@ -191,12 +191,12 @@
 					<Flow
 						data={path}
 						color={color}
-						strokeWidth={strokeWidth}
+						strokeWidth={width < 600 ? 1.0 : strokeWidth}
 						opacity="0.8"
 					/>
 				{/each}
 			{/each}
-		</Canvas> -->
+		</Canvas>
 
 		{#if yearLabels}
 			<YearLabels scale={yearScale} />
