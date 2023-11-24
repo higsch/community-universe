@@ -51,23 +51,23 @@
 	bind:clientWidth={width}
 	bind:clientHeight={height}
 >
-	<Background
+	<!-- <Background
 		width={width}
 		height={height}
-	/>
+	/> -->
 
-	{#if browser && window.location.href === 'http://localhost:3000/'}
+	<!-- {#if browser && window.location.href === 'http://localhost:3000/'}
 		<h1>SerendipityToViz.com</h1>
-	{/if}
+	{/if} -->
 
-	{#if !badgeAdded}
+	<!-- {#if !badgeAdded}
 		<button
 			on:click={() => (modalOpen = true)}
 			style:top="{universeHeight / 7}px">Add your star to the universe</button
 		>
-	{/if}
+	{/if} -->
 
-	{#if browser && window.location.href === 'http://localhost:3000/'}
+	<!-- {#if browser && window.location.href === 'http://localhost:3000/'}
 		<div
 			class="auto-update"
 			style:top="{universeHeight}px"
@@ -80,16 +80,16 @@
 				bind:checked={autoUpdate}
 			/>
 		</div>
-	{/if}
+	{/if} -->
 
-	<BadgeUniverse
+	<!-- <BadgeUniverse
 		uuid={uuid}
 		data={badges}
 		showLegend
 		bind:height={universeHeight}
-	/>
+	/> -->
 
-	<div class="personality-flows">
+	<!-- <div class="personality-flows">
 		{#each names as name, i}
 			<PersonalityFlow
 				name={name}
@@ -100,7 +100,7 @@
 				flowLabels={flowLabels[name]}
 			/>
 		{/each}
-	</div>
+	</div> -->
 
 	<Footer />
 
