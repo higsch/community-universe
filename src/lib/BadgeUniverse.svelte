@@ -24,11 +24,6 @@
 		.domain([0, 1])
 		.range([height - padding, padding]);
 
-	$: dimensionScale = scalePow()
-		.domain([0, 1])
-		.range([width / 80, width / 20])
-		.exponent(3);
-
 	$: scaledData = data.map((d) => {
 		const isAlenkaOrMatthias = d.user_id === '-1';
 		const isAlenka = isAlenkaOrMatthias && d.user_name === 'Alenka';
@@ -46,7 +41,7 @@
 				? width / 7
 				: d.user_id === uuid
 				  ? width / 12
-				  : dimensionScale(Math.random()) + 10,
+				  : 70,
 			isAlenkaOrMatthias,
 			fx: isAlenka ? width / 4 : isMatthias ? (3 * width) / 4 : undefined,
 			fy: isAlenka || isMatthias ? height / 2 : undefined,

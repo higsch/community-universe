@@ -71,6 +71,8 @@
 
 	export let data = Array.from({ length: inputs.length }, () => 0);
 	export let uuid;
+
+	let isSending = false;
 </script>
 
 <div class="badge-configurator">
@@ -81,9 +83,11 @@
 	<form
 		action="?/addBadge"
 		method="POST"
+		on:submit|preventDefault={() => isSending = true}
 		use:enhance={() => {
-			return async () => {
+			return async ({ result }) => {
 				dispatch('sent');
+				if (result) isSending = false;
 				invalidateAll();
 			};
 		}}
@@ -129,7 +133,10 @@
 			name="values"
 			value={data}
 		/>
-		<button type="submit">Add your star</button>
+		<button
+			type="submit"
+			disabled={isSending}>Add your star</button
+		>
 	</form>
 </div>
 

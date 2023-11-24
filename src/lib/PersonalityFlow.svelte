@@ -248,7 +248,7 @@
 		min-height: calc(
 			var(--universeHeight) + var(--personalityHeight) + var(--tailHeight)
 		);
-		overflow: hidden;
+		/* overflow: hidden; */
 	}
 
 	svg {
