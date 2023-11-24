@@ -162,7 +162,7 @@
 						fill="none"
 						stroke="white"
 						stroke-width={strokeWidth}
-						opacity="0.9"
+						opacity="0.8"
 					/>
 				{/each}
 				{#each renderedData as { id, key, paths, color }}
@@ -175,7 +175,7 @@
 							fill="none"
 							stroke={color}
 							stroke-width={strokeWidth}
-							opacity="0.7"
+							opacity="0.8"
 						/>
 					{/each}
 				{/each}
