@@ -66,6 +66,7 @@
 		]);
 	} catch (e) {
 		console.log(e);
+		badgePaths = undefined;
 	}
 
 	$: try {
@@ -116,106 +117,109 @@
 		]);
 	} catch (e) {
 		console.log(e);
+		badgeIntersections = undefined;
 	}
 
 	$: r = width / 2;
 </script>
 
-<svg
-	width={width + 12}
-	height={height + 12}
->
-	<defs>
-		<filter
-			id="glow"
-			width="400%"
-			height="400%"
-			x="-200%"
-			y="-200%"
-		>
-			<feGaussianBlur
-				id="feGaussianBlur5384"
-				in="SourceAlpha"
-				stdDeviation={Math.min(
-					10,
-					(0.9 * badgeScale) / window.devicePixelRatio,
-				)}
-				result="blur"
-			/>
-			<feColorMatrix
-				id="feColorMatrix5386"
-				result="bluralpha"
-				type="matrix"
-				values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 0.800000 0 "
-			/>
-			<feOffset
-				id="feOffset5388"
-				in="bluralpha"
-				dx="0"
-				dy="0"
-				result="offsetBlur"
-			/>
-			<feMerge id="feMerge5390">
-				<feMergeNode
-					id="feMergeNode5392"
-					in="offsetBlur"
-				/>
-				<feMergeNode
-					id="feMergeNode5394"
-					in="SourceGraphic"
-				/>
-			</feMerge>
-		</filter>
-	</defs>
-	<g
-		transform="translate({6 + width / 2} {6 + height / 2})"
-		class:spin={spin && spinSwitch}
-		class:spin-reverse={spin && !spinSwitch}
+{#if badgePaths && badgeIntersections}
+	<svg
+		width={width + 12}
+		height={height + 12}
 	>
-		{#each [...badgePaths.values(), ...badgeIntersections.values()] as { fill, vertices }}
-			<path
-				d={line()(vertices)}
-				fill={fill}
-				filter={isGlowing ? 'url(#glow)' : undefined}
-			/>
-		{/each}
-		{#if name}
-			<g class="label">
-				<path
-					id="path-{id}"
-					d="M{-r} 0a{r} {r} 0 1 1 {r * 2} 0a{r} {r} 0 1 1 {-2 * r} 0"
-					fill="none"
-					stroke="white"
+		<defs>
+			<filter
+				id="glow"
+				width="400%"
+				height="400%"
+				x="-200%"
+				y="-200%"
+			>
+				<feGaussianBlur
+					id="feGaussianBlur5384"
+					in="SourceAlpha"
+					stdDeviation={Math.min(
+						10,
+						(0.9 * badgeScale) / window.devicePixelRatio,
+					)}
+					result="blur"
 				/>
-				<text
-					font-size="0.8rem"
-					dy="5px"
-					fill="var(--background-color)"
-					stroke="var(--background-color)"
-					stroke-width="0.3rem"
-					stroke-opacity="1.0"
-					text-anchor="middle"
-				>
-					<textPath
-						href="#path-{id}"
-						startOffset="25%">{name}</textPath
+				<feColorMatrix
+					id="feColorMatrix5386"
+					result="bluralpha"
+					type="matrix"
+					values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 0.800000 0 "
+				/>
+				<feOffset
+					id="feOffset5388"
+					in="bluralpha"
+					dx="0"
+					dy="0"
+					result="offsetBlur"
+				/>
+				<feMerge id="feMerge5390">
+					<feMergeNode
+						id="feMergeNode5392"
+						in="offsetBlur"
+					/>
+					<feMergeNode
+						id="feMergeNode5394"
+						in="SourceGraphic"
+					/>
+				</feMerge>
+			</filter>
+		</defs>
+		<g
+			transform="translate({6 + width / 2} {6 + height / 2})"
+			class:spin={spin && spinSwitch}
+			class:spin-reverse={spin && !spinSwitch}
+		>
+			{#each [...badgePaths.values(), ...badgeIntersections.values()] as { fill, vertices }}
+				<path
+					d={line()(vertices)}
+					fill={fill}
+					filter={isGlowing ? 'url(#glow)' : undefined}
+				/>
+			{/each}
+			{#if name}
+				<g class="label">
+					<path
+						id="path-{id}"
+						d="M{-r} 0a{r} {r} 0 1 1 {r * 2} 0a{r} {r} 0 1 1 {-2 * r} 0"
+						fill="none"
+						stroke="white"
+					/>
+					<text
+						font-size="0.8rem"
+						dy="5px"
+						fill="var(--background-color)"
+						stroke="var(--background-color)"
+						stroke-width="0.3rem"
+						stroke-opacity="1.0"
+						text-anchor="middle"
 					>
-				</text>
-				<text
-					font-size="0.8rem"
-					dy="5px"
-					fill="var(--h1-color)"
-					text-anchor="middle"
-				>
-					<textPath
-						href="#path-{id}"
-						startOffset="25%">{name}</textPath
+						<textPath
+							href="#path-{id}"
+							startOffset="25%">{name}</textPath
+						>
+					</text>
+					<text
+						font-size="0.8rem"
+						dy="5px"
+						fill="var(--h1-color)"
+						text-anchor="middle"
 					>
-				</text>
-			</g>
-		{/if}
-	</g>
-</svg>
+						<textPath
+							href="#path-{id}"
+							startOffset="25%">{name}</textPath
+						>
+					</text>
+				</g>
+			{/if}
+		</g>
+	</svg>
+{/if}
 
 <style>
 	g.label {
