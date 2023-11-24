@@ -175,6 +175,8 @@
 		<Canvas
 			width={width}
 			height={height}
+			--position="absolute"
+			--z-index="0"
 		>
 			{#each renderedData as { id, paths } (id)}
 				<Flow
@@ -228,6 +230,6 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		z-index: 0;
+		z-index: 10;
 	}
 </style>
