@@ -12,7 +12,6 @@
         id="{id}-{option}"
 				name={id}
 				value={option}
-        checked={option === value}
         on:change={() => value = option}
 			/>
 			{option}
