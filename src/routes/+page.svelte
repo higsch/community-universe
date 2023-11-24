@@ -23,6 +23,17 @@
 	let universeHeight;
 	let autoUpdate = false;
 
+	const setAutoUpdate = () => {
+		interval = setInterval(() => {
+			invalidateAll();
+		}, 1000 * 10);
+	};
+
+	const clearAutoUpdate = () => {
+		if (!interval) return;
+		clearInterval(interval);
+	};
+
 	onMount(() => {
 		uuid = localStorage.getItem('serendipitytoviz-uuid');
 		if (!uuid) {
@@ -35,11 +46,9 @@
 	$: badgeAdded = badges.some((d) => d.user_id === uuid);
 
 	$: if (autoUpdate) {
-		interval = setInterval(() => {
-			invalidateAll();
-		}, 1000 * 10);
+		setAutoUpdate();
 	} else {
-		clearInterval(interval);
+		clearAutoUpdate();
 	}
 
 	onDestroy(() => {
@@ -47,6 +56,7 @@
 	});
 </script>
 
+{#if badges.length && personalities.length}
 <main
 	bind:clientWidth={width}
 	bind:clientHeight={height}
@@ -115,6 +125,7 @@
 		/>
 	</Modal>
 </main>
+{/if}
 
 <style>
 	main {

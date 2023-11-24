@@ -142,17 +142,15 @@
 
 			<g style:--maxThickness="{thicknessScale?.range()[1] / 2}px">
 				{#each renderedData as { key, paths }}
-					{#each paths as path, i}
-						{#if i === Math.floor(paths.length / 2)}
-							<path
-								id="{name}-label-path-{key}"
-								d={path}
-								fill="none"
-								stroke="none"
-								stroke-width={strokeWidth}
-								opacity="0"
-							/>
-						{/if}
+					{#each paths.filter((_, i, arr) => i === Math.floor(arr.length / 2)) as path}
+						<path
+							id="{name}-label-path-{key}"
+							d={path}
+							fill="none"
+							stroke="none"
+							stroke-width={strokeWidth}
+							opacity="0"
+						/>
 					{/each}
 				{/each}
 			</g>
