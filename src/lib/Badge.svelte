@@ -27,86 +27,96 @@
 
 	const spinSwitch = Math.random() > 0.5;
 
+	let badgePaths, badgeIntersections;
+
 	$: height = width;
 	$: badgeScale = width / 12;
 
-	$: badgePaths = new Map([
-		[
-			'data',
-			{
-				fill: '#2db1a4',
-				vertices: radarVertices(data.slice(0, 3), badgeScale),
-			},
-		],
-		[
-			'visualization',
-			{
-				fill: '#dcb22a',
-				vertices: radarVertices(
-					data.slice(3, 6),
-					badgeScale,
-					(2 * Math.PI * 1) / 9 - Math.PI / 2,
-				),
-			},
-		],
-		[
-			'society',
-			{
-				fill: '#9f5f9c',
-				vertices: radarVertices(
-					data.slice(6, 9),
-					badgeScale,
-					(2 * Math.PI * 2) / 9 - Math.PI / 2,
-				),
-			},
-		],
-	]);
+	$: try {
+		badgePaths = new Map([
+			[
+				'data',
+				{
+					fill: '#2db1a4',
+					vertices: radarVertices(data.slice(0, 3), badgeScale),
+				},
+			],
+			[
+				'visualization',
+				{
+					fill: '#dcb22a',
+					vertices: radarVertices(
+						data.slice(3, 6),
+						badgeScale,
+						(2 * Math.PI * 1) / 9 - Math.PI / 2,
+					),
+				},
+			],
+			[
+				'society',
+				{
+					fill: '#9f5f9c',
+					vertices: radarVertices(
+						data.slice(6, 9),
+						badgeScale,
+						(2 * Math.PI * 2) / 9 - Math.PI / 2,
+					),
+				},
+			],
+		]);
+	} catch (e) {
+		console.log(e);
+	}
 
-	$: badgeIntersections = new Map([
-		[
-			'dv',
-			{
-				fill: '#1E6E0F',
-				vertices: intersect(
-					turfPoly(badgePaths.get('data').vertices),
-					turfPoly(badgePaths.get('visualization').vertices),
-				).geometry.coordinates[0],
-			},
-		],
-		[
-			'ds',
-			{
-				fill: '#153252',
-				vertices: intersect(
-					turfPoly(badgePaths.get('data').vertices),
-					turfPoly(badgePaths.get('society').vertices),
-				).geometry.coordinates[0],
-			},
-		],
-		[
-			'vs',
-			{
-				fill: '#773110',
-				vertices: intersect(
-					turfPoly(badgePaths.get('society').vertices),
-					turfPoly(badgePaths.get('visualization').vertices),
-				).geometry.coordinates[0],
-			},
-		],
-		[
-			'dvs',
-			{
-				fill: '#11210D',
-				vertices: intersect(
-					intersect(
+	$: try {
+		badgeIntersections = new Map([
+			[
+				'dv',
+				{
+					fill: '#1E6E0F',
+					vertices: intersect(
 						turfPoly(badgePaths.get('data').vertices),
 						turfPoly(badgePaths.get('visualization').vertices),
-					),
-					turfPoly(badgePaths.get('society').vertices),
-				).geometry.coordinates[0],
-			},
-		],
-	]);
+					).geometry.coordinates[0],
+				},
+			],
+			[
+				'ds',
+				{
+					fill: '#153252',
+					vertices: intersect(
+						turfPoly(badgePaths.get('data').vertices),
+						turfPoly(badgePaths.get('society').vertices),
+					).geometry.coordinates[0],
+				},
+			],
+			[
+				'vs',
+				{
+					fill: '#773110',
+					vertices: intersect(
+						turfPoly(badgePaths.get('society').vertices),
+						turfPoly(badgePaths.get('visualization').vertices),
+					).geometry.coordinates[0],
+				},
+			],
+			[
+				'dvs',
+				{
+					fill: '#11210D',
+					vertices: intersect(
+						intersect(
+							turfPoly(badgePaths.get('data').vertices),
+							turfPoly(badgePaths.get('visualization').vertices),
+						),
+						turfPoly(badgePaths.get('society').vertices),
+					).geometry.coordinates[0],
+				},
+			],
+		]);
+	} catch (e) {
+		console.log(e);
+	}
 
 	$: r = width / 2;
 </script>
