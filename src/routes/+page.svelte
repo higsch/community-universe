@@ -60,12 +60,12 @@
 		<h1>SerendipityToViz.com</h1>
 	{/if} -->
 
-	<!-- {#if !badgeAdded}
+	{#if !badgeAdded}
 		<button
 			on:click={() => (modalOpen = true)}
 			style:top="{universeHeight / 7}px">Add your star to the universe</button
 		>
-	{/if} -->
+	{/if}
 
 	<!-- {#if browser && window.location.href === 'http://localhost:3000/'}
 		<div
