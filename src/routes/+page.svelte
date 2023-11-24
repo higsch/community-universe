@@ -70,7 +70,7 @@
 		<h1>SerendipityToViz.com</h1>
 	{/if}
 
-	{#if !badgeAdded}
+	{#if !badgeAdded && !autoUpdate}
 		<button
 			on:click={() => (modalOpen = true)}
 			style:top="{universeHeight / 7}px">Add your star to the universe</button
