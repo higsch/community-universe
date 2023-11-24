@@ -173,5 +173,6 @@
 		z-index: 1;
 		display: flex;
 		width: 100%;
+		overflow: hidden;
 	}
 </style>
