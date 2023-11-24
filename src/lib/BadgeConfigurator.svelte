@@ -97,19 +97,19 @@
 				for={id}
 				class="value-description">{data[i]} - {meanings[data[i]]}</label
 			>
-			<input
+			<!-- <input
 				type="range"
 				min={minInputValue}
 				max={maxInputValue}
 				bind:value={data[i]}
 				class="slider"
 				id={id}
-			/>
-			<!-- <ScoringInput
+			/> -->
+			<ScoringInput
 				id={id}
 				options={[1, 2, 3, 4, 5]}
 				bind:value={data[i]}
-			/> -->
+			/>
 		{/each}
 		<input
 			type="text"
