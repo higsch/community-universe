@@ -1,10 +1,27 @@
 <div class="footer">
+	<h3>Alenka Guček and Matthias Stahl</h3>
 	<h2>
 		Embracing Serendipity: From Biochemistry to Data Visualization — Two Unique
 		Journeys Unite
 	</h2>
-	<h3>by Alenka Guček and Matthias Stahl</h3>
-	<h5>info+, Edinburgh, 24th November 2023</h5>
+	<p class="abstract">
+		In the dynamic world of data visualization, diverse paths often converge to
+		create captivating narratives. Alenka and Matthias, once biochemists turned
+		data visualization professionals, share their transformative journeys.
+		Making the switch to dataviz from being academic fellows in Sweden, they
+		talk about their paths when their passions for visualization ignited.
+		Alenka's fascination with molecular intricacies pushed her beyond
+		traditional charts, merging her love for molecular structures with artistic
+		visualization. Matthias, on the other hand, found his passion during his
+		postdoc tenure in Stockholm, using data art to communicate complex
+		information effectively. Their stories reveal shared enthusiasm for
+		impactful visualizations, bridging scientific exploration and community
+		engagement. Regardless of their academic origins, their journeys underscore
+		the power of pursuing true passions. In this presentation, we explore Alenka
+		and Matthias' parallel experiences, celebrating diverse paths into data
+		visualization. We invite the community to reflect on their unique journeys
+		for shared understanding and discovery.
+	</p>
 	<div class="image-credits">
 		<p>
 			The code of this website can be found <a
@@ -50,14 +67,28 @@
 		justify-content: center;
 		align-items: center;
 		width: 100%;
-		height: 100vh;
-		padding: 1rem;
+		padding: 2rem 1rem 1rem 1rem;
 	}
 
 	h2,
-	h3,
-	h5 {
+	h3 {
 		text-align: center;
+	}
+
+	h2 {
+		font-family: Handlee;
+	}
+
+	h3 {
+		font-size: 0.9rem;
+		font-weight: normal;
+	}
+
+	p.abstract {
+		padding: 0 1rem;
+		max-width: 900px;
+		font-size: 0.9rem;
+		line-height: 1.8;
 	}
 
 	.image-credits {

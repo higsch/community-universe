@@ -6,7 +6,7 @@
 	<h2>Alenka Guček and Matthias Stahl</h2>
 	<h1>Embracing Serendipity</h1>
 	<p>
-		This website was a talk and presentation during the <a
+		This website was a <b>talk and presentation</b> during the <a
 			href="https://informationplusconference.com">Information+ conference</a
 		> in Edinburgh, 2023. Please see further notes at the bottom of the page.
 	</p>
