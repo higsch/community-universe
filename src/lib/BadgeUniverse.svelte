@@ -41,7 +41,7 @@
 				? width / 7
 				: d.user_id === uuid
 				  ? width / 12
-				  : 70,
+				  : Math.max(50, width / 20),
 			isAlenkaOrMatthias,
 			fx: isAlenka ? width / 4 : isMatthias ? (3 * width) / 4 : undefined,
 			fy: isAlenka || isMatthias ? height / 2 : undefined,

@@ -54,8 +54,6 @@
 	onDestroy(() => {
 		clearInterval(interval);
 	});
-
-	$: console.log(badges)
 </script>
 
 {#if badges.length && personalities.length}
@@ -79,7 +77,7 @@
 		>
 	{/if} -->
 
-	{#if browser && window.location.href === 'http://localhost:3000/'}
+	<!-- {#if browser && window.location.href === 'http://localhost:3000/'}
 		<div
 			class="auto-update"
 			style:top="{universeHeight}px"
@@ -92,7 +90,7 @@
 				bind:checked={autoUpdate}
 			/>
 		</div>
-	{/if}
+	{/if} -->
 
 	<BadgeUniverse
 		uuid={uuid}

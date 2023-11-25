@@ -28,6 +28,7 @@
 	const spinSwitch = Math.random() > 0.5;
 
 	let badgePaths, badgeIntersections;
+	let hasError = false;
 
 	$: height = width;
 	$: badgeScale = width / 13;
@@ -69,56 +70,65 @@
 		badgePaths = undefined;
 	}
 
-	$: try {
-		badgeIntersections = new Map([
-			[
-				'dv',
-				{
-					fill: '#1E6E0F',
-					vertices: intersect(
-						turfPoly(badgePaths.get('data').vertices),
-						turfPoly(badgePaths.get('visualization').vertices),
-					).geometry.coordinates[0],
-				},
-			],
-			[
-				'ds',
-				{
-					fill: '#153252',
-					vertices: intersect(
-						turfPoly(badgePaths.get('data').vertices),
-						turfPoly(badgePaths.get('society').vertices),
-					).geometry.coordinates[0],
-				},
-			],
-			[
-				'vs',
-				{
-					fill: '#773110',
-					vertices: intersect(
-						turfPoly(badgePaths.get('society').vertices),
-						turfPoly(badgePaths.get('visualization').vertices),
-					).geometry.coordinates[0],
-				},
-			],
-			[
-				'dvs',
-				{
-					fill: '#11210D',
-					vertices: intersect(
-						intersect(
-							turfPoly(badgePaths.get('data').vertices),
-							turfPoly(badgePaths.get('visualization').vertices),
-						),
-						turfPoly(badgePaths.get('society').vertices),
-					).geometry.coordinates[0],
-				},
-			],
-		]);
-	} catch (e) {
-		console.log(e);
-		badgeIntersections = undefined;
-	}
+	const getIntersectionCoords = (ids, badgePaths) => {
+		try {
+			if (ids.length === 2) {
+				return intersect(
+					turfPoly(badgePaths.get(ids[0]).vertices),
+					turfPoly(badgePaths.get(ids[1]).vertices),
+				).geometry.coordinates[0];
+			} else if (ids.length === 3) {
+				return intersect(
+					intersect(
+						turfPoly(badgePaths.get(ids[0]).vertices),
+						turfPoly(badgePaths.get(ids[1]).vertices),
+					),
+					turfPoly(badgePaths.get(ids[2]).vertices),
+				).geometry.coordinates[0];
+			}
+		} catch (e) {
+			console.log(e);
+			hasError = true;
+			return [];
+		}
+	};
+
+	$: badgeIntersections = new Map([
+		[
+			'dv',
+			{
+				fill: '#1E6E0F',
+				vertices: getIntersectionCoords(['data', 'visualization'], badgePaths),
+			},
+		],
+		[
+			'ds',
+			{
+				fill: '#153252',
+				vertices: getIntersectionCoords(['data', 'society'], badgePaths),
+			},
+		],
+		[
+			'vs',
+			{
+				fill: '#773110',
+				vertices: getIntersectionCoords(
+					['society', 'visualization'],
+					badgePaths,
+				),
+			},
+		],
+		[
+			'dvs',
+			{
+				fill: '#11210D',
+				vertices: getIntersectionCoords(
+					['data', 'visualization', 'society'],
+					badgePaths,
+				),
+			},
+		],
+	]);
 
 	$: r = width / 2;
 </script>
@@ -127,6 +137,7 @@
 	<svg
 		width={width + 12}
 		height={height + 12}
+		class:has-error={hasError}
 	>
 		<defs>
 			<filter
