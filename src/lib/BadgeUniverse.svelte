@@ -1,5 +1,5 @@
 <script>
-	import { scalePow, scaleLinear, scaleSqrt } from 'd3';
+	import { scaleLinear, scaleSqrt } from 'd3';
 
 	import { layoutForce } from '$utils/force';
 
@@ -10,8 +10,9 @@
 	export let data;
 	export let height;
 	export let showLegend = false;
+	export let showLabels = false;
 
-	const padding = 20;
+	const padding = 0;
 
 	let width;
 	let renderedData = [];
@@ -56,6 +57,7 @@
 				data: scaledData,
 				width,
 				height,
+				padding
 			})))();
 	}
 </script>
@@ -72,7 +74,7 @@
 				class:transition={!isAlenkaOrMatthias}
 				style:top="{y}px"
 				style:left="{x}px"
-				style:z-index={isAlenkaOrMatthias ? 100 : isGlowing ? 300 : 200}
+				style:z-index={isAlenkaOrMatthias ? 200 : isGlowing ? 300 : name ? 200 : 150}
 			>
 				<Badge
 					data={data}
@@ -80,6 +82,7 @@
 					width={r * 2}
 					spin={!isAlenkaOrMatthias}
 					isGlowing={isGlowing}
+					showLabel={showLabels}
 				/>
 			</div>
 		{/each}

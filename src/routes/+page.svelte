@@ -7,6 +7,7 @@
 	import { browser } from '$app/environment';
 	import { names, careerImages, flowLabels } from '$utils/config';
 
+	import Header from '$lib/Header.svelte';
 	import Background from '$lib/Background.svelte';
 	import Modal from '$lib/Modal.svelte';
 	import BadgeUniverse from '$lib/BadgeUniverse.svelte';
@@ -22,6 +23,7 @@
 	let modalOpen = false;
 	let universeHeight;
 	let autoUpdate = false;
+	let showLabels = false;
 
 	const setAutoUpdate = () => {
 		interval = setInterval(() => {
@@ -56,28 +58,30 @@
 	});
 </script>
 
-{#if badges.length && personalities.length}
-<main
-	bind:clientWidth={width}
-	bind:clientHeight={height}
->
-	<Background
-		width={width}
-		height={height}
-	/>
+<Header bind:showLabels={showLabels} />
 
-	<!-- {#if browser && window.location.href === 'http://localhost:3000/'}
+{#if badges.length && personalities.length}
+	<main
+		bind:clientWidth={width}
+		bind:clientHeight={height}
+	>
+		<Background
+			width={width}
+			height={height}
+		/>
+
+		<!-- {#if browser && window.location.href === 'http://localhost:3000/'}
 		<h1>SerendipityToViz.com</h1>
 	{/if} -->
 
-	<!-- {#if !badgeAdded && !autoUpdate}
+		<!-- {#if !badgeAdded && !autoUpdate}
 		<button
 			on:click={() => (modalOpen = true)}
 			style:top="{universeHeight / 7}px">Add your star to the universe</button
 		>
 	{/if} -->
 
-	<!-- {#if browser && window.location.href === 'http://localhost:3000/'}
+		<!-- {#if browser && window.location.href === 'http://localhost:3000/'}
 		<div
 			class="auto-update"
 			style:top="{universeHeight}px"
@@ -92,39 +96,40 @@
 		</div>
 	{/if} -->
 
-	<BadgeUniverse
-		uuid={uuid}
-		data={badges}
-		showLegend
-		bind:height={universeHeight}
-	/>
-
-	<div class="personality-flows">
-		{#each names as name, i}
-			<PersonalityFlow
-				name={name}
-				data={personalities.filter((d) => d.name === name)}
-				careerImages={careerImages[name]}
-				universeHeight={universeHeight}
-				yearLabels={i === 0}
-				flowLabels={flowLabels[name]}
-			/>
-		{/each}
-	</div>
-
-	<Footer />
-
-	<Modal bind:isOpen={modalOpen}>
-		<span slot="header">Create your own star</span>
-		<BadgeConfigurator
+		<BadgeUniverse
 			uuid={uuid}
-			data={Array.from({ length: 9 }, () => 3)}
-			on:sent={() => {
-				modalOpen = false;
-			}}
+			data={badges}
+			showLegend
+			showLabels={showLabels}
+			bind:height={universeHeight}
 		/>
-	</Modal>
-</main>
+
+		<div class="personality-flows">
+			{#each names as name, i}
+				<PersonalityFlow
+					name={name}
+					data={personalities.filter((d) => d.name === name)}
+					careerImages={careerImages[name]}
+					universeHeight={universeHeight}
+					yearLabels={i === 0}
+					flowLabels={flowLabels[name]}
+				/>
+			{/each}
+		</div>
+
+		<Footer />
+
+		<Modal bind:isOpen={modalOpen}>
+			<span slot="header">Create your own star</span>
+			<BadgeConfigurator
+				uuid={uuid}
+				data={Array.from({ length: 9 }, () => 3)}
+				on:sent={() => {
+					modalOpen = false;
+				}}
+			/>
+		</Modal>
+	</main>
 {/if}
 
 <style>

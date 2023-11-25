@@ -11,6 +11,7 @@
 	export let width = 250;
 	export let spin = false;
 	export let isGlowing = false;
+	export let showLabel = false;
 
 	const id = uuidv4();
 
@@ -138,6 +139,7 @@
 		width={width + 12}
 		height={height + 12}
 		class:has-error={hasError}
+		class:show-label={showLabel}
 	>
 		<defs>
 			<filter
@@ -238,7 +240,7 @@
 		transition: opacity 0.2s linear;
 	}
 
-	svg:hover g.label {
+	svg:hover g.label, svg.show-label g.label {
 		opacity: 1;
 	}
 
