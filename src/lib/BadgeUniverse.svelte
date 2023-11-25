@@ -87,7 +87,7 @@
 	{#if showLegend}
 		<CareerImage
 			x="50%"
-			y="50%"
+			y="90%"
 			src="img/dvs_badge_legend.png"
 			alt="Career"
 			dimension="{Math.max(300, Math.min(675, width / 3))}px"

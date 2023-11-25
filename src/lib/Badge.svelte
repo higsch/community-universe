@@ -6,7 +6,7 @@
 	export let data = [5, 5, 4, 5, 5, 4, 2, 4, 2];
 	// data: collection, cleaning, analysis
 	// visualization: building, design, storytelling
-	// society: community, leadership, management
+	// society: management, community, leadership
 	export let name;
 	export let width = 250;
 	export let spin = false;
@@ -57,7 +57,7 @@
 				{
 					fill: '#9f5f9c',
 					vertices: radarVertices(
-						data.slice(6, 9),
+						[data[7], data[8], data[6]],
 						badgeScale,
 						(2 * Math.PI * 2) / 9 - Math.PI / 2,
 					),

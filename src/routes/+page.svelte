@@ -54,6 +54,8 @@
 	onDestroy(() => {
 		clearInterval(interval);
 	});
+
+	$: console.log(badges)
 </script>
 
 {#if badges.length && personalities.length}
@@ -66,16 +68,16 @@
 		height={height}
 	/>
 
-	{#if browser && window.location.href === 'http://localhost:3000/'}
+	<!-- {#if browser && window.location.href === 'http://localhost:3000/'}
 		<h1>SerendipityToViz.com</h1>
-	{/if}
+	{/if} -->
 
-	{#if !badgeAdded && !autoUpdate}
+	<!-- {#if !badgeAdded && !autoUpdate}
 		<button
 			on:click={() => (modalOpen = true)}
 			style:top="{universeHeight / 7}px">Add your star to the universe</button
 		>
-	{/if}
+	{/if} -->
 
 	{#if browser && window.location.href === 'http://localhost:3000/'}
 		<div

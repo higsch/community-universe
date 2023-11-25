@@ -328,11 +328,11 @@ export const yearRandomness = {
 
 export const personalityHeight = 5000;
 export const tailHeight = 600;
-export const finalStarAlenka = [5, 4, 4, 2, 5, 4, 3, 2, 4];
-export const finalStarMatthias = [5, 4, 5, 5, 5, 4, 2, 2, 4];
+export const finalStarAlenka = [5, 4, 4, 2, 5, 4, 4, 3, 2];
+export const finalStarMatthias = [5, 4, 5, 5, 5, 4, 4, 2, 2];
 // data: collection, cleaning, analysis
 // visualization: building, design, storytelling
-// society: community, leadership, management
+// society: management, community, leadership
 
 export const careerImages = {
 	Alenka: [
