@@ -14,6 +14,7 @@
 	export let showLabel = false;
 
 	const id = uuidv4();
+	const extension = 12;
 
 	const radarVertices = (valueArray, scale, rotateRadians = -Math.PI / 2) => {
 		const nPoints = valueArray.length;
@@ -136,10 +137,12 @@
 
 {#if badgePaths && badgeIntersections}
 	<svg
-		width={width + 12}
-		height={height + 12}
+		width={width + extension}
+		height={height + extension}
 		class:has-error={hasError}
 		class:show-label={showLabel}
+		class:spin={spin && spinSwitch}
+		class:spin-reverse={spin && !spinSwitch}
 	>
 		<defs>
 			<filter
@@ -184,9 +187,8 @@
 			</filter>
 		</defs>
 		<g
-			transform="translate({6 + width / 2} {6 + height / 2})"
-			class:spin={spin && spinSwitch}
-			class:spin-reverse={spin && !spinSwitch}
+			transform="translate({extension / 2 + width / 2} {extension / 2 + height / 2})"
+			class="badge-group"
 		>
 			{#each [...badgePaths.values(), ...badgeIntersections.values()] as { fill, vertices }}
 				<path
@@ -240,17 +242,16 @@
 		transition: opacity 0.2s linear;
 	}
 
-	svg:hover g.label, svg.show-label g.label {
+	svg:hover g.label,
+	svg.show-label g.label {
 		opacity: 1;
 	}
 
 	.spin {
-		transform-origin: center center;
 		animation: spin 180s linear infinite;
 	}
 
 	.spin-reverse {
-		transform-origin: center center;
 		animation: spin-reverse 180s linear infinite;
 	}
 
